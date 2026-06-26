@@ -66,7 +66,7 @@ void main() {
   vec4 color2 = texture2D(uTexture2, distortedUv);
 
   // Mix between color1 and color2 based on the mask
-  vec4 finalColor = mix(color1, color2, mask);
+  vec4 finalColor = mix(color1, color2, mask *0.4);
 
   // Add subtle light bloom/glow near the cursor using the cursor distance
   float glow = 1.0 - smoothstep(0.0, currentRadius * 1.5, dist);
