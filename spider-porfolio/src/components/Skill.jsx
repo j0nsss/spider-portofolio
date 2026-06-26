@@ -4,19 +4,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FILTERS = ['All', 'Frontend', 'Mobile', 'Backend', 'Systems'];
-
 const SKILLS = [
-  { name: 'JavaScript', category: 'Frontend', level: 94, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-  { name: 'React', category: 'Frontend', level: 92, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-  { name: 'Flutter', category: 'Mobile', level: 88, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
-  { name: 'HTML', category: 'Frontend', level: 96, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-  { name: 'CSS', category: 'Frontend', level: 93, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-  { name: 'Python', category: 'Backend', level: 87, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-  { name: 'Go', category: 'Backend', level: 82, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' },
-  { name: 'PHP', category: 'Backend', level: 84, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
-  { name: 'Java', category: 'Backend', level: 83, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
-  { name: 'C++', category: 'Systems', level: 79, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'JavaScript', level: 94, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'React', level: 92, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: 'Flutter', level: 88, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg' },
+  { name: 'HTML', level: 96, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+  { name: 'CSS', level: 93, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+  { name: 'Python', level: 87, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'Go', level: 82, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg' },
+  { name: 'PHP', level: 84, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
+  { name: 'Java', level: 83, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+  { name: 'C++', level: 79, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'C', level: 78, logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg' },
 ];
 
 const STACK_LINES = [
@@ -34,21 +33,21 @@ const STACK_LINES = [
 
 export default function Skill() {
   const sectionRef = useRef(null);
-  const [activeFilter, setActiveFilter] = useState('All');
+  const sliderRef = useRef(null);
   const [activeSkillName, setActiveSkillName] = useState(SKILLS[0].name);
 
-  const filteredSkills = useMemo(() => {
-    if (activeFilter === 'All') return SKILLS;
-    return SKILLS.filter((skill) => skill.category === activeFilter);
-  }, [activeFilter]);
-
   const activeSkill = useMemo(() => {
-    return (
-      filteredSkills.find((skill) => skill.name === activeSkillName) ??
-      filteredSkills[0] ??
-      SKILLS[0]
-    );
-  }, [activeSkillName, filteredSkills]);
+    return SKILLS.find((skill) => skill.name === activeSkillName) ?? SKILLS[0];
+  }, [activeSkillName]);
+
+  const moveSlide = (direction) => {
+    if (!sliderRef.current) return;
+
+    sliderRef.current.scrollBy({
+      left: direction * Math.min(sliderRef.current.clientWidth * 0.88, 420),
+      behavior: 'smooth',
+    });
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -108,33 +107,43 @@ export default function Skill() {
           </p>
         </div>
 
-        <div className="skill-reveal mb-10 flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-          {FILTERS.map((filter) => (
+        <div className="skill-reveal mb-8 flex items-center justify-between gap-4">
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-gray-500">
+            Drag or slide through the stack
+          </p>
+          <div className="flex gap-3">
             <button
-              key={filter}
               type="button"
-              onClick={() => setActiveFilter(filter)}
-              className={`shrink-0 rounded-full border px-5 py-2.5 text-xs font-bold uppercase tracking-[0.18em] transition duration-300 ${
-                activeFilter === filter
-                  ? 'border-red-500 bg-red-500 text-white shadow-[0_0_28px_rgba(239,68,68,0.28)]'
-                  : 'border-white/10 bg-white/[0.03] text-gray-400 hover:border-white/35 hover:text-white'
-              }`}
+              onClick={() => moveSlide(-1)}
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/[0.03] text-xl text-white transition duration-300 hover:border-red-500/50 hover:bg-red-500/10"
+              aria-label="Previous skill"
             >
-              {filter}
+              ‹
             </button>
-          ))}
+            <button
+              type="button"
+              onClick={() => moveSlide(1)}
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-white/[0.03] text-xl text-white transition duration-300 hover:border-red-500/50 hover:bg-red-500/10"
+              aria-label="Next skill"
+            >
+              ›
+            </button>
+          </div>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {filteredSkills.map((skill) => (
+          <div
+            ref={sliderRef}
+            className="skill-reveal flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 no-scrollbar"
+          >
+            {SKILLS.map((skill) => (
               <button
                 key={skill.name}
                 type="button"
                 onMouseEnter={() => setActiveSkillName(skill.name)}
                 onFocus={() => setActiveSkillName(skill.name)}
                 onClick={() => setActiveSkillName(skill.name)}
-                className={`skill-reveal group relative min-h-52 overflow-hidden rounded-lg border p-5 text-left transition duration-300 ${
+                className={`group relative min-h-64 w-[82vw] shrink-0 snap-center overflow-hidden rounded-lg border p-6 text-left transition duration-300 sm:w-[22rem] lg:w-[24rem] ${
                   activeSkill.name === skill.name
                     ? 'border-red-500/50 bg-red-500/[0.06]'
                     : 'border-white/10 bg-white/[0.035] hover:border-white/30 hover:bg-white/[0.055]'
@@ -151,17 +160,17 @@ export default function Skill() {
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="font-mono text-[11px] font-bold uppercase tracking-[0.26em] text-gray-500">
-                        {skill.category}
+                        Programming skill
                       </p>
-                      <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white">
+                      <h3 className="mt-4 text-3xl font-semibold tracking-tight text-white">
                         {skill.name}
                       </h3>
                     </div>
-                    <div className="grid h-14 w-14 place-items-center rounded-lg border border-white/10 bg-white/[0.06] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
+                    <div className="grid h-16 w-16 place-items-center rounded-lg border border-white/10 bg-white/[0.06] shadow-[0_16px_40px_rgba(0,0,0,0.3)]">
                       <img
                         src={skill.logo}
                         alt=""
-                        className="h-9 w-9 object-contain"
+                        className="h-11 w-11 object-contain"
                         loading="lazy"
                         aria-hidden="true"
                       />
@@ -201,9 +210,6 @@ export default function Skill() {
               <h3 className="text-4xl font-bold tracking-tight text-white">
                 {activeSkill.name}
               </h3>
-              <p className="mt-3 text-sm uppercase tracking-[0.2em] text-gray-500">
-                {activeSkill.category} capability
-              </p>
               <p className="mt-6 text-base leading-relaxed text-gray-400">
                 Comfortable using {activeSkill.name} as part of a production workflow, from implementation details to integration, debugging, and maintainable delivery.
               </p>
