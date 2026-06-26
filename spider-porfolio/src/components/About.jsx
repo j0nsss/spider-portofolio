@@ -7,6 +7,13 @@ import imgMan from '../assets/man/1775519899126.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const STACK_LINES = [
+  'JUNADHAN ALZAM TINIZA PUTRA',
+  'JUNADHAN ALZAM TINIZA PUTRA',
+  'JUNADHAN ALZAM TINIZA PUTRA',
+  'JUNADHAN ALZAM TINIZA PUTRA',
+];
+
 const HIGHLIGHTS = [
   { value: '5+', label: 'Years building interfaces' },
   { value: '18', label: 'Production projects shipped' },
@@ -97,6 +104,19 @@ export default function About() {
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-red-500/25 to-transparent" />
 
       <div ref={textContainerRef} className="relative z-10 w-full max-w-[90rem]">
+        <div className="stagger-reveal mb-12 overflow-hidden border-y border-white/10 py-5">
+          <div className="flex w-max animate-[aboutStackMarquee_30s_linear_infinite] gap-4">
+            {[...STACK_LINES, ...STACK_LINES].map((item, index) => (
+              <span
+                key={`${item}-${index}`}
+                className="rounded-full border border-white/10 bg-white/[0.03] px-5 py-2 text-xs font-bold uppercase tracking-[0.18em] text-gray-400 transition-colors duration-300 hover:border-red-500/40 hover:text-white"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
         <div className="mb-14 flex flex-col gap-5 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="stagger-reveal mb-4 font-mono text-xs font-bold uppercase tracking-[0.32em] text-red-400">
@@ -209,6 +229,13 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes aboutStackMarquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+      ` }} />
     </section>
   );
 }
