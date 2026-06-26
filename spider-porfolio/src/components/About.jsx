@@ -1,186 +1,213 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Reuse our hero assets for the dual-identity mask effect prototype
 import imgSpiderman from '../assets/spiderman/20260407_055437.png';
 import imgMan from '../assets/man/1775519899126.png';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const HIGHLIGHTS = [
+  { value: '5+', label: 'Years building interfaces' },
+  { value: '18', label: 'Production projects shipped' },
+  { value: '3', label: 'Core stacks mastered' },
+];
+
+const CAPABILITIES = [
+  'Product-minded frontend systems',
+  'API-driven web applications',
+  'Motion design that supports usability',
+  'Performance-focused implementation',
+];
 
 export default function About() {
   const sectionRef = useRef(null);
   const textContainerRef = useRef(null);
   const imageContainerRef = useRef(null);
   const maskRef = useRef(null);
-  
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
 
-  // 1. ScrollTrigger entrance animation
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Create a timeline bound to the scroll position
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%", // triggers when the top of the section hits 75% of the viewport height
-          toggleActions: "play none none reverse" // play forwards on scroll down, reverse on scroll out
-        }
+          start: 'top 72%',
+          toggleActions: 'play none none reverse',
+        },
       });
 
-      // Select all text lines that have the 'stagger-reveal' class
       const textElements = textContainerRef.current.querySelectorAll('.stagger-reveal');
-      
-      // Select the image container
-      const imgElement = imageContainerRef.current;
 
-      tl.fromTo(imgElement, 
-        { opacity: 0, x: -50 }, 
-        { opacity: 1, x: 0, duration: 1.2, ease: "power3.out" }
-      )
-      .fromTo(textElements, 
+      tl.fromTo(
+        imageContainerRef.current,
+        { opacity: 0, x: -50 },
+        { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out' },
+      ).fromTo(
+        textElements,
         { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: "power3.out" },
-        "-=0.8" // start before image is fully in
+        { opacity: 1, y: 0, duration: 0.85, stagger: 0.1, ease: 'power3.out' },
+        '-=0.65',
       );
-      
     }, sectionRef);
 
-    return () => ctx.revert(); // clean up ScrollTrigger
+    return () => ctx.revert();
   }, []);
 
-  // 2. Interactive Spotlight Mask
   const handleMouseMove = (e) => {
-    if (!imageContainerRef.current) return;
-    
-    // Get mouse position relative to the image container
+    if (!imageContainerRef.current || !maskRef.current) return;
+
     const rect = imageContainerRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
-    
-    // Use GSAP to smoothly lerp the mask center
+
     gsap.to(maskRef.current, {
       '--x': `${x}%`,
       '--y': `${y}%`,
       duration: 0.4,
-      ease: 'power2.out'
+      ease: 'power2.out',
     });
   };
 
   const handleMouseLeave = () => {
-    // Return to default center position smoothly
+    if (!maskRef.current) return;
+
     gsap.to(maskRef.current, {
       '--x': '50%',
       '--y': '50%',
       duration: 0.8,
-      ease: 'power3.out'
+      ease: 'power3.out',
     });
   };
 
   return (
-    <section 
-    id='about'
-      ref={sectionRef} 
-      className="relative w-full min-h-screen bg-black flex items-center justify-center py-24 px-6 md:px-12 lg:px-24 overflow-hidden"
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050505] px-6 py-28 md:px-12 lg:px-24"
     >
-      {/* Background Ambience Layer */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-900/10 blur-[120px] rounded-full mix-blend-screen" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg==')] opacity-30 mix-blend-overlay" />
-      </div>
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.045]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.55) 1px, transparent 1px)',
+          backgroundSize: '96px 96px',
+        }}
+      />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-red-500/25 to-transparent" />
 
-      <div className="max-w-[90rem] w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
-        
-        {/* Left Column: Interactive Portrait */}
-        <div 
-          ref={imageContainerRef}
-          className="relative w-full aspect-[4/5] max-w-md mx-auto lg:max-w-none rounded-2xl overflow-hidden cursor-crosshair group shadow-2xl border border-white/5"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          style={{ transform: 'translateZ(0)' }} // Hardware acceleration
-        >
-          {/* Base Layer: Developer Portrait (Moody/Dark) */}
-          <img 
-            src={imgMan} 
-            alt="Developer Persona" 
-            className="absolute inset-0 w-full h-full object-cover object-center grayscale opacity-60 mix-blend-luminosity brightness-75 transition-all duration-700 group-hover:scale-105"
-          />
-
-          {/* Masked Overlay: Superhero Persona (Vibrant) */}
-          <div 
-            ref={maskRef}
-            className="absolute inset-0 w-full h-full"
-            style={{
-              '--x': '50%',
-              '--y': '50%',
-              // The polygon logic simulates a circular spotlight reveal
-              // For a soft glowing edge, clip-path doesn't support blur inherently, but this acts perfectly as the mask.
-              clipPath: 'circle(15% at var(--x) var(--y))',
-              transition: 'clip-path 0.1s ease-out'
-            }}
-          >
-            <img 
-              src={imgSpiderman} 
-              alt="Hidden Superhero Persona" 
-              className="absolute inset-0 w-full h-full object-cover object-center scale-105 group-hover:scale-110 transition-transform duration-[2s] ease-out"
-            />
-            
-            {/* Inner spotlight glow matched inside the mask */}
-            <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/20 to-black/80" />
-          </div>
-
-          {/* Interaction Hint Overlay */}
-          <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-             <div className="w-24 h-24 rounded-full border border-white/20 scale-150 animate-ping absolute" />
-          </div>
-        </div>
-
-        {/* Right Column: Story & Details */}
-        <div ref={textContainerRef} className="flex flex-col justify-center space-y-10">
-          
-          <div className="overflow-hidden">
-            <h2 className="stagger-reveal text-5xl md:text-6xl font-bold tracking-tighter text-white font-sans leading-tight">
-              The Dual <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500 font-serif italic pr-4">Persona</span>
+      <div ref={textContainerRef} className="relative z-10 w-full max-w-[90rem]">
+        <div className="mb-14 flex flex-col gap-5 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="stagger-reveal mb-4 font-mono text-xs font-bold uppercase tracking-[0.32em] text-red-400">
+              About / Profile
+            </p>
+            <h2 className="stagger-reveal max-w-3xl text-4xl font-bold leading-[0.98] tracking-tight text-white md:text-6xl lg:text-[4.75rem]">
+              Building precise digital products with a cinematic edge.
             </h2>
           </div>
 
-          <div className="overflow-hidden">
-            <p className="stagger-reveal text-lg md:text-xl text-gray-400 font-light leading-relaxed max-w-xl">
-              There are two sides to every great digital experience. The relentless logic of the backend, and the striking, emotional pull of the frontend. As a Full-Stack Developer, my superpower lies in bridging that gap—masking complex, high-performance web architecture behind beautiful, fluid, and fiercely creative user interfaces.
-            </p>
+          <p className="stagger-reveal max-w-md text-base leading-relaxed text-gray-400 md:text-right md:text-lg">
+            I connect polished interfaces with dependable engineering, turning product ideas into fast, expressive, and maintainable web experiences.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(320px,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
+          <div
+            ref={imageContainerRef}
+            className="group relative mx-auto aspect-[4/5] w-full max-w-[32rem] overflow-hidden rounded-lg border border-white/10 bg-zinc-950 shadow-[0_28px_80px_rgba(0,0,0,0.45)] lg:mx-0"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ transform: 'translateZ(0)' }}
+          >
+            <img
+              src={imgMan}
+              alt="Jonad developer portrait"
+              className="absolute inset-0 h-full w-full object-cover object-center grayscale brightness-[0.72] contrast-110 transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+
+            <div
+              ref={maskRef}
+              className="absolute inset-0"
+              style={{
+                '--x': '50%',
+                '--y': '50%',
+                clipPath: 'circle(17% at var(--x) var(--y))',
+                transition: 'clip-path 0.12s ease-out',
+              }}
+            >
+              <img
+                src={imgSpiderman}
+                alt="Creative alternate persona"
+                className="absolute inset-0 h-full w-full scale-[1.04] object-cover object-center saturate-125 transition-transform duration-[2s] ease-out group-hover:scale-[1.08]"
+              />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--x)_var(--y),transparent_0%,rgba(0,0,0,0.18)_45%,rgba(0,0,0,0.72)_100%)]" />
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/25" />
+            <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-red-500/60 via-white/10 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-red-300/90">
+                Full-stack Developer
+              </p>
+              <p className="mt-2 max-w-sm text-sm leading-relaxed text-gray-300">
+                Calm systems thinking, expressive interaction design, and implementation discipline in one workflow.
+              </p>
+            </div>
           </div>
 
-          {/* Expertise Highlights */}
-          <div className="overflow-hidden">
-            <div className="stagger-reveal grid grid-cols-2 gap-x-8 gap-y-4 pt-4 border-t border-white/10 max-w-xl">
-              {[
-                "Full-Stack Fluidity", 
-                "Motion & Micro-Interactions", 
-                "System Architecture", 
-                "Pixel-Perfect UIs"
-              ].map((skill, i) => (
-                <div key={i} className="flex items-center space-x-3 group">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-red-500 transition-colors duration-300" />
-                  <span className="text-gray-300 text-sm md:text-base font-medium tracking-wide uppercase group-hover:text-white transition-colors duration-300">
+          <div className="flex flex-col justify-center">
+            <div className="stagger-reveal grid grid-cols-3 border-y border-white/10">
+              {HIGHLIGHTS.map((item) => (
+                <div
+                  key={item.label}
+                  className="border-white/10 py-6 pr-4 [&:not(:last-child)]:border-r md:py-8 md:pr-6"
+                >
+                  <p className="text-3xl font-semibold tracking-tight text-white md:text-5xl">
+                    {item.value}
+                  </p>
+                  <p className="mt-2 max-w-[9rem] text-xs uppercase tracking-[0.18em] text-gray-500">
+                    {item.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="stagger-reveal mt-10 grid gap-8 md:grid-cols-[0.8fr_1.2fr]">
+              <p className="font-mono text-xs font-bold uppercase tracking-[0.32em] text-gray-500">
+                Approach
+              </p>
+              <div className="space-y-5">
+                <p className="text-xl font-light leading-relaxed text-gray-200 md:text-2xl">
+                  I design and develop web experiences that feel sharp on the surface and stay stable underneath.
+                </p>
+                <p className="text-base leading-relaxed text-gray-400">
+                  My work balances visual direction, frontend architecture, API integration, animation, and performance. The goal is not just a striking first impression, but an interface that remains clear, fast, and easy to evolve.
+                </p>
+              </div>
+            </div>
+
+            <div className="stagger-reveal mt-10 grid gap-3 sm:grid-cols-2">
+              {CAPABILITIES.map((skill) => (
+                <div
+                  key={skill}
+                  className="flex min-h-16 items-center gap-4 rounded-lg border border-white/10 bg-white/[0.03] px-5 py-4 transition-colors duration-300 hover:border-red-500/40 hover:bg-red-500/[0.04]"
+                >
+                  <span className="h-2 w-2 shrink-0 rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.65)]" />
+                  <span className="text-sm font-medium uppercase tracking-[0.12em] text-gray-300">
                     {skill}
                   </span>
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Quote Block */}
-          <div className="overflow-hidden mt-6">
-            <blockquote className="stagger-reveal border-l-2 border-red-500/50 pl-6 py-2">
-              <p className="text-xl md:text-2xl text-gray-200 font-serif italic">
-                “Logic builds the foundation. <br /> Imagination breaks the boundaries.”
+            <blockquote className="stagger-reveal mt-10 border-l border-red-500/60 pl-6">
+              <p className="text-lg font-serif italic leading-relaxed text-gray-200 md:text-2xl">
+                "Logic gives the product structure. Taste gives it momentum."
               </p>
             </blockquote>
           </div>
-          
         </div>
-
       </div>
     </section>
   );
