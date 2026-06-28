@@ -75,7 +75,7 @@ export default function Contact() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: "top 80%",
           toggleActions: "play none none reverse"
         }
       });
@@ -83,7 +83,7 @@ export default function Contact() {
       const elements = sectionRef.current.querySelectorAll('.animate-element');
       tl.fromTo(elements,
         { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: "power3.out" }
+        { opacity: 1, y: 0, duration: 1.2, stagger: 0.15, ease: "power3.out", force3D: true }
       );
 
     }, sectionRef);

@@ -54,7 +54,7 @@ export default function Skill() {
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 72%',
+          start: 'top 78%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -63,13 +63,13 @@ export default function Skill() {
         .fromTo(
           '.skill-reveal',
           { opacity: 0, y: 36 },
-          { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out' },
+          { opacity: 1, y: 0, duration: 1.1, stagger: 0.1, ease: 'power3.out', force3D: true },
         )
         .fromTo(
           '.skill-meter',
           { scaleX: 0 },
-          { scaleX: 1, duration: 1, stagger: 0.04, ease: 'power3.out' },
-          '-=0.45',
+          { scaleX: 1, duration: 1.2, stagger: 0.05, ease: 'power3.out' },
+          '-=0.5',
         );
     }, sectionRef);
 

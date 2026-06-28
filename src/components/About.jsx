@@ -38,7 +38,7 @@ export default function About() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 72%',
+          start: 'top 78%',
           toggleActions: 'play none none reverse',
         },
       });
@@ -48,12 +48,12 @@ export default function About() {
       tl.fromTo(
         imageContainerRef.current,
         { opacity: 0, x: -50 },
-        { opacity: 1, x: 0, duration: 1.1, ease: 'power3.out' },
+        { opacity: 1, x: 0, duration: 1.3, ease: 'power3.out', force3D: true },
       ).fromTo(
         textElements,
         { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.85, stagger: 0.1, ease: 'power3.out' },
-        '-=0.65',
+        { opacity: 1, y: 0, duration: 1.1, stagger: 0.12, ease: 'power3.out', force3D: true },
+        '-=0.7',
       );
     }, sectionRef);
 
