@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { useLenis } from '../LenisContext';
 
 const NAV_LINKS = [
   { name: 'Home', href: '#' },
@@ -10,6 +11,7 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
+  const lenis = useLenis();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -61,6 +63,26 @@ export default function Navbar() {
       duration: 0.4,
       ease: 'power2.out'
     });
+  };
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    if (!lenis) return;
+
+    if (href === '#') {
+      lenis.scrollTo(0, { duration: 1.8, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    } else {
+      const target = document.querySelector(href);
+      if (target) {
+        lenis.scrollTo(target, {
+          offset: -80,
+          duration: 1.8,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+      }
+    }
+
+    setIsMobileMenuOpen(false);
   };
 
   // Mobile Menu Animation Toggle
@@ -118,14 +140,14 @@ export default function Navbar() {
           {/* Desktop Links */}
           <div className="hidden md:flex items-center space-x-10">
             {NAV_LINKS.map((link, index) => (
-              <a 
-                key={link.name} 
+              <a
+                key={link.name}
                 href={link.href}
                 ref={el => linksRef.current[index] = el}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="relative text-gray-400 hover:text-white text-sm font-medium tracking-wide transition-colors duration-300 group"
               >
                 {link.name}
-                {/* Center-out underline animation */}
                 <span className="absolute -bottom-1 left-1/2 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
               </a>
             ))}
@@ -133,12 +155,12 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <button 
-              ref={el => linksRef.current[NAV_LINKS.length] = el} // animate with the links
+            <button
+              ref={el => linksRef.current[NAV_LINKS.length] = el}
+              onClick={(e) => handleNavClick(e, '#contact')}
               className="relative px-6 py-2.5 rounded-full overflow-hidden group bg-transparent border border-white/20 text-white text-sm font-medium tracking-wider hover:border-white/60 transition-colors duration-300"
             >
               <span className="relative z-10 group-hover:text-black transition-colors duration-300">Let's Talk</span>
-              {/* Button Inner Fill Effect */}
               <div className="absolute inset-0 h-full w-full bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
             </button>
           </div>
@@ -165,11 +187,11 @@ export default function Navbar() {
       >
         <div className="flex flex-col space-y-8 text-center mt-10">
           {NAV_LINKS.map((link, index) => (
-            <a 
-              key={link.name} 
+            <a
+              key={link.name}
               href={link.href}
               ref={el => mobileLinksRef.current[index] = el}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-3xl font-light text-gray-400 hover:text-white transition-colors tracking-widest relative group"
             >
               {link.name}
@@ -177,9 +199,9 @@ export default function Navbar() {
             </a>
           ))}
           
-          <button 
+          <button
             ref={el => mobileLinksRef.current[NAV_LINKS.length] = el}
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={(e) => handleNavClick(e, '#contact')}
             className="mt-8 px-8 py-3 rounded-full border border-white text-white tracking-widest hover:bg-white hover:text-black transition-all duration-300"
           >
             Hire Me
