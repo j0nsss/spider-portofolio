@@ -90,18 +90,21 @@ export default function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#050505] px-6 py-28 md:px-12 lg:px-24"
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-black via-slate-950 to-black px-6 py-28 md:px-12 lg:px-24"
     >
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.045]"
+        className="absolute inset-0 pointer-events-none opacity-[0.035]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.55) 1px, transparent 1px)',
-          backgroundSize: '96px 96px',
+            'linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
         }}
       />
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-red-500/25 to-transparent" />
+      
+      {/* Floating gradient orb */}
+      <div className="absolute left-1/4 top-1/3 w-96 h-96 bg-red-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
 
       <div ref={textContainerRef} className="relative z-10 w-full max-w-[90rem]">
         <div className="stagger-reveal mb-12 overflow-hidden border-y border-white/10 py-5">
@@ -118,24 +121,24 @@ export default function About() {
         </div>
 
         <div className="mb-14 flex flex-col gap-5 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="stagger-reveal mb-4 font-mono text-xs font-bold uppercase tracking-[0.32em] text-red-400">
-              About / Profile
-            </p>
-            <h2 className="stagger-reveal max-w-3xl text-4xl font-bold leading-[0.98] tracking-tight text-white md:text-6xl lg:text-[4.75rem]">
-              Building precise digital products with a cinematic edge.
-            </h2>
-          </div>
+            <div>
+              <p className="stagger-reveal mb-4 font-mono-custom text-xs font-bold uppercase tracking-[0.36em] text-red-500">
+                About / Profile
+              </p>
+              <h2 className="stagger-reveal font-display text-5xl md:text-6xl lg:text-[5.5rem] font-black leading-[0.95] tracking-tighter text-white max-w-4xl">
+                Building <span className="text-gradient-primary">precise digital products</span> with a cinematic edge.
+              </h2>
+            </div>
 
-          <p className="stagger-reveal max-w-md text-base leading-relaxed text-gray-400 md:text-right md:text-lg">
-            I connect polished interfaces with dependable engineering, turning product ideas into fast, expressive, and maintainable web experiences.
-          </p>
+            <p className="stagger-reveal max-w-md text-body-lg text-gray-400 md:text-right">
+              I connect polished interfaces with dependable engineering, turning product ideas into <span className="font-semibold text-white">fast, expressive, and maintainable</span> web experiences.
+            </p>
         </div>
 
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(320px,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
           <div
             ref={imageContainerRef}
-            className="group relative mx-auto aspect-[4/5] w-full max-w-[32rem] overflow-hidden rounded-lg border border-white/10 bg-zinc-950 shadow-[0_28px_80px_rgba(0,0,0,0.45)] lg:mx-0"
+            className="group relative mx-auto aspect-[4/5] w-full max-w-[32rem] overflow-hidden rounded-2xl border border-white/20 bg-zinc-950 shadow-[0_32px_96px_rgba(0,0,0,0.6)] lg:mx-0 hover:border-red-500/30 transition-all duration-500"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             style={{ transform: 'translateZ(0)' }}
@@ -164,14 +167,14 @@ export default function About() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--x)_var(--y),transparent_0%,rgba(0,0,0,0.18)_45%,rgba(0,0,0,0.72)_100%)]" />
             </div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/25" />
-            <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-red-500/60 via-white/10 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-red-300/90">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
+            <div className="absolute left-0 top-0 h-full w-[2px] bg-gradient-to-b from-red-500/70 via-red-400/30 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent backdrop-blur-sm">
+              <p className="font-mono-custom text-[10px] uppercase tracking-[0.32em] text-red-400 mb-2">
                 Full-stack Developer
               </p>
-              <p className="mt-2 max-w-sm text-sm leading-relaxed text-gray-300">
-                Calm systems thinking, expressive interaction design, and implementation discipline in one workflow.
+              <p className="max-w-sm text-sm leading-relaxed text-gray-200">
+                <span className="font-medium text-white">Calm systems thinking</span>, <span className="font-medium text-white">expressive interaction design</span>, and <span className="font-medium text-white">implementation discipline</span> in one workflow.
               </p>
             </div>
           </div>
@@ -183,10 +186,10 @@ export default function About() {
                   key={item.label}
                   className="border-white/10 py-6 pr-4 [&:not(:last-child)]:border-r md:py-8 md:pr-6"
                 >
-                  <p className="text-3xl font-semibold tracking-tight text-white md:text-5xl">
+                  <p className="font-display text-4xl md:text-5xl font-black tracking-tighter text-white">
                     {item.value}
                   </p>
-                  <p className="mt-2 max-w-[9rem] text-xs uppercase tracking-[0.18em] text-gray-500">
+                  <p className="mt-2 max-w-[9rem] text-label text-gray-500">
                     {item.label}
                   </p>
                 </div>
@@ -194,14 +197,14 @@ export default function About() {
             </div>
 
             <div className="stagger-reveal mt-10 grid gap-8 md:grid-cols-[0.8fr_1.2fr]">
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.32em] text-gray-500">
+              <p className="font-mono-custom text-xs font-bold uppercase tracking-[0.36em] text-gray-500">
                 Approach
               </p>
               <div className="space-y-5">
-                <p className="text-xl font-light leading-relaxed text-gray-200 md:text-2xl">
-                  I design and develop web experiences that feel sharp on the surface and stay stable underneath.
+                <p className="font-heading text-2xl md:text-3xl font-bold leading-relaxed text-gray-100">
+                  I design and develop web experiences that feel <span className="text-gradient-primary font-extrabold">sharp on the surface</span> and stay <span className="font-extrabold text-white">stable underneath</span>.
                 </p>
-                <p className="text-base leading-relaxed text-gray-400">
+                <p className="text-body-md text-gray-400">
                   My work balances visual direction, frontend architecture, API integration, animation, and performance. The goal is not just a striking first impression, but an interface that remains clear, fast, and easy to evolve.
                 </p>
               </div>
@@ -221,9 +224,9 @@ export default function About() {
               ))}
             </div>
 
-            <blockquote className="stagger-reveal mt-10 border-l border-red-500/60 pl-6">
-              <p className="text-lg font-serif italic leading-relaxed text-gray-200 md:text-2xl">
-                "Logic gives the product structure. Taste gives it momentum."
+            <blockquote className="stagger-reveal mt-10 border-l-2 border-red-500/70 pl-6">
+              <p className="font-serif text-2xl md:text-3xl italic leading-relaxed text-gray-100">
+                "Logic gives the product <span className="text-gradient-primary font-semibold not-italic">structure</span>. Taste gives it <span className="text-gradient-primary font-semibold not-italic">momentum</span>."
               </p>
             </blockquote>
           </div>

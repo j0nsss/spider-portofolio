@@ -113,14 +113,14 @@ export default function Navbar() {
         onMouseMove={handleMouseMove}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 overflow-hidden ${
           isScrolled 
-            ? 'bg-black/40 backdrop-blur-md border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] py-4' 
+            ? 'bg-black/30 backdrop-blur-xl border-b border-white/15 shadow-[0_16px_48px_rgba(0,0,0,0.6)] py-4' 
             : 'bg-transparent py-6'
         }`}
       >
         {/* Subtle Background Glow Mask */}
         <div 
           ref={glowRef}
-          className="pointer-events-none absolute w-[300px] h-[300px] bg-white/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 mix-blend-screen opacity-0 md:opacity-100 transition-opacity duration-300"
+          className="pointer-events-none absolute w-[350px] h-[350px] bg-gradient-to-r from-red-500/10 to-white/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 mix-blend-screen opacity-0 md:opacity-100 transition-opacity duration-300"
         />
 
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center relative z-10">
@@ -153,15 +153,15 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+           {/* CTA Button */}
+           <div className="hidden md:block">
             <button
               ref={el => linksRef.current[NAV_LINKS.length] = el}
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="relative px-6 py-2.5 rounded-full overflow-hidden group bg-transparent border border-white/20 text-white text-sm font-medium tracking-wider hover:border-white/60 transition-colors duration-300"
+              className="relative px-7 py-2.5 rounded-full overflow-hidden group bg-gradient-to-r from-red-600 to-red-500 border border-red-400/50 text-white text-sm font-medium tracking-wider hover:shadow-[0_0_32px_rgba(239,68,68,0.4)] transition-all duration-300"
             >
-              <span className="relative z-10 group-hover:text-black transition-colors duration-300">Let's Talk</span>
-              <div className="absolute inset-0 h-full w-full bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
+              <span className="relative z-10">Let's Talk</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
           </div>
 

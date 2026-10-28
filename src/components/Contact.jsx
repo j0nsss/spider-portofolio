@@ -95,25 +95,25 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative w-full min-h-screen bg-[#030303] flex items-center justify-center py-24 px-6 md:px-12 overflow-hidden"
+      className="relative w-full min-h-screen bg-gradient-to-b from-black via-slate-950 to-black flex items-center justify-center py-24 px-6 md:px-12 overflow-hidden"
     >
       {/* Intense Background Glow */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-0">
-        <div className="w-[900px] h-[600px] bg-red-600/10 rounded-full blur-[150px] mix-blend-screen opacity-40" />
+        <div className="w-[1000px] h-[700px] bg-gradient-to-r from-red-600/15 via-red-500/10 to-transparent rounded-full blur-[180px] mix-blend-screen opacity-50 animate-pulse" />
       </div>
 
       <div className="max-w-5xl w-full relative z-10 flex flex-col items-center text-center">
 
         {/* Header Block */}
         <div className="mb-16 animate-element">
-          <p className="text-red-500 font-mono text-sm tracking-[0.3em] uppercase font-bold mb-4">
+          <p className="text-red-500 font-mono-custom text-xs tracking-[0.36em] uppercase font-bold mb-5">
             [ Reach Out ]
           </p>
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white font-sans leading-none mb-6 drop-shadow-xl">
-            Find Me <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-white font-serif italic pr-2">Online</span>
+          <h2 className="font-display text-6xl md:text-7xl lg:text-[6rem] font-black tracking-tighter text-white leading-none mb-6 drop-shadow-xl">
+            Find Me <span className="text-gradient-hero inline-block animate-text-glow">Online</span>
           </h2>
-          <p className="text-gray-400 font-light text-lg tracking-wide leading-relaxed max-w-2xl mx-auto">
-            Let's connect across the digital universe. Tap any platform below to start a conversation.
+          <p className="text-body-lg text-gray-400 max-w-2xl mx-auto">
+            Let's connect across the digital universe. <span className="font-semibold text-white">Tap any platform</span> below to start a conversation.
           </p>
         </div>
 
@@ -125,32 +125,32 @@ export default function Contact() {
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`animate-element group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] p-6 md:p-8 backdrop-blur-sm transition-all duration-500 ${social.color} hover:bg-white/[0.06] hover:scale-[1.03] hover:-translate-y-1 active:scale-[0.98]`}
+              className={`animate-element group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.03] p-8 md:p-9 backdrop-blur-xl transition-all duration-500 ${social.color} hover:bg-white/[0.10] hover:scale-[1.05] hover:-translate-y-2 active:scale-[0.97] shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_24px_64px_rgba(0,0,0,0.6)]`}
             >
               {/* Hover glow beam */}
-              <div className={`absolute -inset-40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-radial from-white/5 to-transparent pointer-events-none`} />
+              <div className={`absolute -inset-40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-radial from-red-500/5 to-transparent pointer-events-none`} />
 
               {/* Gradient strip on hover */}
-              <div className={`absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r ${social.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div className={`absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r ${social.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_20px_currentColor]`} />
 
               <div className="relative z-10 flex flex-col items-center gap-4">
                 {/* Icon container */}
-                <div className={`flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 group-hover:bg-white/10 border border-white/5 group-hover:border-white/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 ${social.color.replace('hover:border', 'group-hover:border').replace('hover:shadow', 'group-hover:shadow')}`}>
+                <div className={`flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-white/[0.12] to-white/[0.06] group-hover:from-white/[0.18] group-hover:to-white/[0.10] border border-white/10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-[0_8px_24px_rgba(0,0,0,0.3)] ${social.color.replace('hover:border', 'group-hover:border').replace('hover:shadow', 'group-hover:shadow')}`}>
                   {social.icon}
                 </div>
 
                 {/* Name */}
-                <h3 className="text-white text-xl font-semibold tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-500">
+                <h3 className="text-white font-heading text-2xl font-bold tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-500">
                   {social.name}
                 </h3>
 
                 {/* Handle */}
-                <p className="text-gray-500 text-sm font-mono group-hover:text-gray-300 transition-colors duration-500">
+                <p className="text-gray-500 font-mono-custom text-sm group-hover:text-gray-300 transition-colors duration-500">
                   {social.handle}
                 </p>
 
                 {/* Hover indicator */}
-                <span className="inline-flex items-center gap-2 text-xs text-gray-600 group-hover:text-red-400 uppercase tracking-[0.2em] font-medium transition-all duration-500 group-hover:gap-3">
+                <span className="inline-flex items-center gap-2 text-xs text-gray-600 group-hover:text-red-400 uppercase tracking-[0.24em] font-semibold transition-all duration-500 group-hover:gap-3">
                   Connect
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1">
                     <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -163,7 +163,7 @@ export default function Contact() {
         </div>
 
         {/* Bottom note */}
-        <p className="mt-16 text-gray-600 text-sm font-mono tracking-wide animate-element">
+        <p className="mt-16 text-gray-600 font-mono-custom text-xs tracking-wider animate-element">
           [ All links open in a new tab ]
         </p>
 

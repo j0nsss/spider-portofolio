@@ -212,25 +212,32 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative flex min-h-screen w-screen items-center overflow-hidden bg-black">
+    <section ref={heroRef} className="relative flex min-h-screen w-screen items-center overflow-hidden bg-gradient-to-b from-black via-slate-950 to-black">
       <div ref={containerRef} className="absolute inset-0 z-0 select-none" />
 
-      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_68%_46%,transparent_0%,rgba(0,0,0,0.16)_28%,rgba(0,0,0,0.72)_72%,#000_100%)] pointer-events-none" />
-      <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.68)_38%,rgba(0,0,0,0.2)_68%,rgba(0,0,0,0.5)_100%)] pointer-events-none" />
+      {/* Enhanced gradient overlays */}
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_68%_46%,transparent_0%,rgba(239,68,68,0.08)_28%,rgba(0,0,0,0.5)_72%,#000_100%)] pointer-events-none" />
+      <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.5)_35%,rgba(0,0,0,0.1)_65%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
+      
+      {/* Subtle animated grid */}
       <div
-        className="absolute inset-0 z-[3] opacity-[0.06] pointer-events-none"
+        className="absolute inset-0 z-[3] opacity-[0.04] pointer-events-none"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.7) 1px, transparent 1px)',
-          backgroundSize: '84px 84px',
+            'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
         }}
       />
+      
+      {/* Animated accent line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent z-[3] pointer-events-none" />
 
       <div
         ref={cursorRef}
-        className="fixed left-0 top-0 z-20 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 mix-blend-screen pointer-events-none"
+        className="fixed left-0 top-0 z-20 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0 mix-blend-screen pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(255,255,255,0.14) 0%, rgba(239,68,68,0.08) 34%, rgba(255,255,255,0) 70%)',
+          background: 'radial-gradient(circle, rgba(239,68,68,0.25) 0%, rgba(239,68,68,0.12) 40%, rgba(255,255,255,0) 70%)',
+          filter: 'blur(20px)',
         }}
       />
 
@@ -240,46 +247,52 @@ export default function Hero() {
             className="max-w-5xl transition-transform duration-700 ease-out"
             style={{ transform: isHovered ? 'translateY(-14px)' : 'translateY(0)' }}
           >
-            <div className="hero-reveal mb-8 flex w-fit items-center gap-3 border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-md">
-              <span className="h-2 w-2 rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.85)]" />
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-gray-300">
+            <div className="hero-reveal mb-8 flex w-fit items-center gap-3 rounded-full border border-white/20 bg-gradient-to-r from-white/[0.08] to-white/[0.03] px-5 py-2.5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.85)]"></span>
+              </span>
+              <span className="font-mono-custom text-[10px] font-bold uppercase tracking-[0.32em] text-gray-200">
                 Jonad / Digital Product Engineer
               </span>
             </div>
 
-            <h1 className="hero-reveal max-w-5xl text-5xl font-bold leading-[0.92] tracking-tight text-white md:text-7xl lg:text-[6.8rem]">
-              Interfaces with impact.
-              <span className="block font-serif font-light italic text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-white to-gray-500">
+            <h1 className="hero-reveal font-display text-6xl md:text-7xl lg:text-[7.5rem] font-black leading-[0.9] tracking-tighter text-white max-w-5xl">
+              Interfaces with{' '}
+              <span className="text-gradient-hero inline-block animate-text-glow">
+                impact.
+              </span>
+              <span className="block font-serif font-light italic text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-300 to-gray-400 mt-2">
                 Systems with discipline.
               </span>
             </h1>
 
-            <p className="hero-reveal mt-8 max-w-2xl text-base font-light leading-relaxed text-gray-300 md:text-xl">
-              I craft modern web applications where cinematic visuals, smooth interactions, and reliable engineering work as one product experience.
+            <p className="hero-reveal mt-8 max-w-2xl text-body-lg text-gray-300">
+              I craft modern web applications where <span className="font-semibold text-white">cinematic visuals</span>, <span className="font-semibold text-white">smooth interactions</span>, and <span className="font-semibold text-white">reliable engineering</span> work as one product experience.
             </p>
 
             <div className="hero-reveal mt-10 flex flex-col gap-4 sm:flex-row">
               <a
                 href="#contact"
-                className="pointer-events-auto inline-flex min-h-14 items-center justify-center rounded-full bg-white px-8 text-sm font-semibold uppercase tracking-[0.18em] text-black transition duration-300 hover:bg-red-500 hover:text-white"
+                className="pointer-events-auto inline-flex min-h-14 items-center justify-center rounded-full bg-gradient-to-r from-red-600 to-red-500 px-9 text-sm font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:shadow-[0_0_40px_rgba(239,68,68,0.5)] hover:scale-105 active:scale-95"
               >
                 Start a Project
               </a>
               <a
                 href="#projects"
-                className="pointer-events-auto inline-flex min-h-14 items-center justify-center rounded-full border border-white/20 bg-black/20 px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md transition duration-300 hover:border-white/60 hover:bg-white/10"
+                className="pointer-events-auto inline-flex min-h-14 items-center justify-center rounded-full border-2 border-white/25 bg-black/20 px-9 text-sm font-bold uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/60 hover:bg-white/10 hover:scale-105 active:scale-95"
               >
                 View Work
               </a>
             </div>
           </div>
 
-          <aside className="hero-reveal pointer-events-auto w-full border border-white/10 bg-black/35 p-5 backdrop-blur-xl md:p-6 lg:self-end">
-            <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.26em] text-red-300">
+          <aside className="hero-reveal pointer-events-auto w-full rounded-xl border border-white/20 bg-gradient-to-b from-white/[0.06] to-white/[0.03] p-6 backdrop-blur-xl shadow-[0_16px_48px_rgba(0,0,0,0.5)] md:p-7 lg:self-end">
+            <div className="mb-6 flex items-center justify-between border-b border-white/15 pb-5">
+              <p className="font-mono text-xs font-bold uppercase tracking-[0.26em] text-red-400">
                 Current Focus
               </p>
-              <span className="rounded-full border border-green-400/25 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-green-300">
+              <span className="rounded-full border border-green-500/30 bg-gradient-to-r from-green-500/[0.1] to-emerald-400/[0.08] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-green-300 shadow-[0_0_20px_rgba(34,197,94,0.15)]">
                 Available
               </span>
             </div>

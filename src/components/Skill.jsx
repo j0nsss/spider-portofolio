@@ -80,35 +80,35 @@ export default function Skill() {
     <section
       id="skills"
       ref={sectionRef}
-      className="relative w-full overflow-hidden bg-[#050505] px-6 py-28 md:px-12 lg:px-24"
+      className="relative w-full overflow-hidden bg-gradient-to-b from-black via-slate-950 to-black px-6 py-28 md:px-12 lg:px-24"
     >
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.05]"
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.65) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.65) 1px, transparent 1px)',
-          backgroundSize: '88px 88px',
+            'linear-gradient(rgba(255,255,255,0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.7) 1px, transparent 1px)',
+          backgroundSize: '72px 72px',
         }}
       />
-      <div className="absolute left-1/2 top-0 h-[28rem] w-[44rem] -translate-x-1/2 rounded-full bg-red-500/10 blur-[140px] pointer-events-none" />
+      <div className="absolute left-1/2 top-0 h-[32rem] w-[48rem] -translate-x-1/2 rounded-full bg-red-500/8 blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[90rem]">
         <div className="skill-reveal mb-12 flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.32em] text-red-400">
+           <div>
+            <p className="mb-4 font-mono-custom text-xs font-bold uppercase tracking-[0.36em] text-red-500">
               Skills / Technology Stack
             </p>
-            <h2 className="max-w-4xl text-4xl font-bold leading-[0.98] tracking-tight text-white md:text-6xl lg:text-[4.75rem]">
-              Languages, frameworks, and tools I use to ship real products.
+            <h2 className="font-display text-5xl md:text-6xl lg:text-[5.5rem] font-black leading-[0.95] tracking-tighter text-white max-w-4xl">
+              Languages, frameworks, and tools I use to <span className="text-gradient-primary">ship real products</span>.
             </h2>
           </div>
-          <p className="max-w-md text-base leading-relaxed text-gray-400 md:text-right md:text-lg">
-            From frontend interfaces to backend logic and low-level fundamentals, I work across the stack with a practical engineering mindset.
+          <p className="max-w-md text-body-lg text-gray-400 md:text-right">
+            From <span className="font-semibold text-white">frontend interfaces</span> to <span className="font-semibold text-white">backend logic</span> and <span className="font-semibold text-white">low-level fundamentals</span>, I work across the stack with a practical engineering mindset.
           </p>
         </div>
 
-        <div className="skill-reveal mb-8 flex items-center justify-between gap-4">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-gray-500">
+           <div className="skill-reveal mb-8 flex items-center justify-between gap-4">
+          <p className="font-mono-custom text-xs font-bold uppercase tracking-[0.32em] text-gray-500">
             Drag or slide through the stack
           </p>
           <div className="flex gap-3">
@@ -143,17 +143,17 @@ export default function Skill() {
                 onMouseEnter={() => setActiveSkillName(skill.name)}
                 onFocus={() => setActiveSkillName(skill.name)}
                 onClick={() => setActiveSkillName(skill.name)}
-                className={`group relative min-h-64 w-[82vw] shrink-0 snap-center overflow-hidden rounded-lg border p-6 text-left transition duration-300 sm:w-[22rem] lg:w-[24rem] ${
+                className={`group relative min-h-72 w-[82vw] shrink-0 snap-center overflow-hidden rounded-2xl border p-7 text-left transition-all duration-500 sm:w-[22rem] lg:w-[24rem] ${
                   activeSkill.name === skill.name
-                    ? 'border-red-500/50 bg-red-500/[0.06]'
-                    : 'border-white/10 bg-white/[0.035] hover:border-white/30 hover:bg-white/[0.055]'
+                    ? 'border-red-500/60 bg-gradient-to-br from-red-500/[0.08] to-red-500/[0.03] shadow-[0_20px_60px_rgba(239,68,68,0.25)]'
+                    : 'border-white/15 bg-gradient-to-br from-white/[0.05] to-white/[0.02] hover:border-white/35 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]'
                 }`}
               >
                 <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/10 opacity-20 blur-2xl transition duration-300 group-hover:opacity-35" />
-                <img
+                 <img
                   src={skill.logo}
                   alt={`${skill.name} logo`}
-                  className="absolute -bottom-8 -right-6 h-32 w-32 opacity-[0.08] grayscale transition duration-500 group-hover:scale-110 group-hover:opacity-[0.14]"
+                  className="absolute -bottom-8 -right-6 h-32 w-32 opacity-[0.06] grayscale transition-all duration-700 group-hover:scale-110 group-hover:opacity-[0.16] group-hover:grayscale-0"
                   loading="lazy"
                 />
                 <div className="relative flex h-full flex-col justify-between">
@@ -194,7 +194,7 @@ export default function Skill() {
             ))}
           </div>
 
-          <aside className="skill-reveal h-fit rounded-lg border border-white/10 bg-black/40 p-6 backdrop-blur-xl lg:sticky lg:top-28">
+          <aside className="skill-reveal h-fit rounded-2xl border border-white/20 bg-gradient-to-b from-white/[0.08] to-white/[0.04] p-7 backdrop-blur-xl shadow-[0_24px_64px_rgba(0,0,0,0.5)] lg:sticky lg:top-28">
             <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-red-300">
               Selected Skill
             </p>
