@@ -33,32 +33,90 @@ export default function About() {
   const imageContainerRef = useRef(null);
   const maskRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 78%',
-          toggleActions: 'play none none reverse',
-        },
-      });
+   useEffect(() => {
+     const ctx = gsap.context(() => {
+       const tl = gsap.timeline({
+         scrollTrigger: {
+           trigger: sectionRef.current,
+           start: 'top 80%',
+           toggleActions: 'play none none reverse',
+           markers: false,
+         },
+       });
 
-      const textElements = textContainerRef.current.querySelectorAll('.stagger-reveal');
+       const textElements = textContainerRef.current.querySelectorAll('.stagger-reveal');
+       const headingElement = textContainerRef.current.querySelector('h2');
+       
+       // Split heading text for character animation
+       if (headingElement) {
+         const headingText = headingElement.textContent;
+         headingElement.innerHTML = headingText.split('').map(char => 
+           `<span class="char" style="display:inline-block; opacity:0;">${char === ' ' ? '&nbsp;' : char}</span>`
+         ).join('');
+       }
 
-      tl.fromTo(
-        imageContainerRef.current,
-        { opacity: 0, x: -50 },
-        { opacity: 1, x: 0, duration: 1.3, ease: 'power3.out', force3D: true },
-      ).fromTo(
-        textElements,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1.1, stagger: 0.12, ease: 'power3.out', force3D: true },
-        '-=0.7',
-      );
-    }, sectionRef);
+       const chars = textContainerRef.current.querySelectorAll('.char');
 
-    return () => ctx.revert();
-  }, []);
+       tl.fromTo(
+         imageContainerRef.current,
+         { opacity: 0, scale: 0.95, x: -30 },
+         { opacity: 1, scale: 1, x: 0, duration: 1.5, ease: 'power3.out', force3D: true },
+       )
+       .fromTo(
+         chars,
+         { opacity: 0, y: 20, rotationX: 20 },
+         { opacity: 1, y: 0, rotationX: 0, duration: 0.8, stagger: 0.02, ease: 'power2.out' },
+         '-=1.0'
+       )
+       .fromTo(
+         textElements,
+         { opacity: 0, y: 30 },
+         { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: 'power2.out' },
+         '-=0.5'
+       );
+
+       // Parallax effect on scroll
+       ScrollTrigger.create({
+         trigger: imageContainerRef.current,
+         start: 'top bottom',
+         end: 'bottom top',
+         onUpdate: (self) => {
+           gsap.to(imageContainerRef.current, {
+             y: self.progress * 50,
+             duration: 0.3,
+             ease: 'none'
+           });
+         }
+       });
+
+       // Stats counter animation
+       const stats = textContainerRef.current.querySelectorAll('.stat-value');
+       stats.forEach((stat) => {
+         const value = stat.textContent;
+         const isNumber = !isNaN(value);
+         
+         if (isNumber) {
+           stat.textContent = '0';
+           ScrollTrigger.create({
+             trigger: stat,
+             start: 'top 90%',
+             once: true,
+             onEnter: () => {
+               gsap.to(stat, {
+                 innerText: value,
+                 duration: 2,
+                 snap: { innerText: 1 },
+                 ease: 'power2.out'
+               });
+             }
+           });
+         }
+       });
+
+     }, sectionRef);
+
+     return () => ctx.revert();
+   }, []);
 
   const handleMouseMove = (e) => {
     if (!imageContainerRef.current || !maskRef.current) return;
@@ -186,7 +244,7 @@ export default function About() {
                   key={item.label}
                   className="border-white/10 py-6 pr-4 [&:not(:last-child)]:border-r md:py-8 md:pr-6"
                 >
-                  <p className="font-display text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+                  <p className="stat-value font-display text-3xl md:text-4xl font-extrabold tracking-tight text-white">
                     {item.value}
                   </p>
                   <p className="mt-3 max-w-[9rem] text-label text-gray-500">

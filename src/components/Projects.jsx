@@ -209,21 +209,58 @@ export default function Projects() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 78%',
+          start: 'top 80%',
           toggleActions: 'play none none reverse',
         },
       });
 
+      const heading = sectionRef.current.querySelector('.projects-heading');
+      if (heading) {
+        const headingText = heading.textContent;
+        heading.innerHTML = headingText.split('').map(char => 
+          `<span class="char" style="display:inline-block; opacity:0;">${char === ' ' ? '&nbsp;' : char}</span>`
+        ).join('');
+      }
+
+      const chars = sectionRef.current.querySelectorAll('.char');
+
       tl.fromTo(
         '.projects-reveal',
-        { opacity: 0, y: 42 },
-        { opacity: 1, y: 0, duration: 1.1, stagger: 0.1, ease: 'power3.out', force3D: true },
-      ).fromTo(
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, stagger: 0.08, ease: 'power2.out', force3D: true },
+      )
+      .fromTo(
+        chars,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.015, ease: 'power2.out' },
+        '-=0.7'
+      )
+      .fromTo(
         '.project-card',
-        { opacity: 0, y: 80, scale: 0.96 },
-        { opacity: 1, y: 0, scale: 1, duration: 1.2, stagger: 0.12, ease: 'power3.out', force3D: true },
-        '-=0.5',
+        { opacity: 0, y: 60, rotationX: 10 },
+        { opacity: 1, y: 0, rotationX: 0, duration: 1, stagger: 0.15, ease: 'power3.out', force3D: true },
+        '-=0.3',
       );
+
+      // Add hover magnetic effect on project cards
+      const cards = sectionRef.current.querySelectorAll('.project-card');
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          gsap.to(card, {
+            z: 20,
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            z: 0,
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -248,10 +285,10 @@ export default function Projects() {
       <div className="relative z-10 mx-auto w-full max-w-[90rem]">
         <div className="projects-reveal mb-12 flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.25em] text-red-500">
+            <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.25em] text-red-500 projects-reveal">
               Selected work
             </p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-[4.5rem] font-black leading-[0.9] tracking-tighter text-white max-w-4xl mb-6">
+            <h2 className="projects-heading font-display text-4xl md:text-5xl lg:text-[4.5rem] font-black leading-[0.9] tracking-tighter text-white max-w-4xl mb-6">
               Recent projects I've shipped.
             </h2>
           </div>

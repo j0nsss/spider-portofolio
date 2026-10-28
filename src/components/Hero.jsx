@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { vertexShader, fragmentShader } from './HeroShaders';
+
+gsap.registerPlugin(ScrollTrigger);
 
 import imgSpiderman from '../assets/spiderman/20260407_055437.png';
 import imgMan from '../assets/man/1775519899126.png';
@@ -180,15 +183,43 @@ export default function Hero() {
     hero.addEventListener('touchmove', onTouch);
     window.addEventListener('resize', onResize);
 
-    const entrance = gsap.timeline();
-    entrance
-      .fromTo(container, { opacity: 0, scale: 1.04 }, { opacity: 1, scale: 1, duration: 1.6, ease: 'power3.out' })
-      .fromTo(
-        contentRef.current?.querySelectorAll('.hero-reveal'),
-        { opacity: 0, y: 36 },
-        { opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out' },
-        '-=0.8',
-      );
+     // Text reveal animation with character splitting
+     const splitText = (element) => {
+       if (!element) return '';
+       const text = element.textContent;
+       element.innerHTML = text.split('').map(char => 
+         `<span class="char" style="display:inline-block; opacity:0;">${char === ' ' ? '&nbsp;' : char}</span>`
+       ).join('');
+       return element.querySelectorAll('.char');
+     };
+
+     const mainHeading = contentRef.current?.querySelector('h1');
+     if (mainHeading) {
+       const chars = splitText(mainHeading);
+       
+       const entrance = gsap.timeline({ defaults: { ease: 'power3.out' } });
+       
+       entrance
+         .fromTo(container, 
+           { opacity: 0, scale: 1.04 }, 
+           { opacity: 1, scale: 1, duration: 1.8, ease: 'power4.out' })
+         .fromTo(chars,
+           { opacity: 0, y: 40, rotationX: 90 },
+           { opacity: 1, y: 0, rotationX: 0, duration: 1.2, stagger: 0.03 },
+           '-=1.2')
+         .fromTo(contentRef.current?.querySelector('.hero-availability'),
+           { opacity: 0, scale: 0.8, y: 20 },
+           { opacity: 1, scale: 1, y: 0, duration: 0.9 },
+           '-=0.8')
+         .fromTo(contentRef.current?.querySelector('.hero-description'),
+           { opacity: 0, y: 30 },
+           { opacity: 1, y: 0, duration: 1.1 },
+           '-=0.6')
+         .fromTo(contentRef.current?.querySelectorAll('.hero-button'),
+           { opacity: 0, y: 25 },
+           { opacity: 1, y: 0, duration: 0.8, stagger: 0.1 },
+           '-=0.4');
+     }
 
     return () => {
       entrance.kill();
@@ -247,7 +278,7 @@ export default function Hero() {
             className="max-w-5xl transition-transform duration-700 ease-out"
             style={{ transform: isHovered ? 'translateY(-14px)' : 'translateY(0)' }}
           >
-            <div className="hero-reveal mb-10 flex w-fit items-center gap-3 rounded-full border border-white/15 bg-white/[0.05] px-6 py-3 backdrop-blur-lg">
+            <div className="hero-reveal mb-10 flex w-fit items-center gap-3 rounded-full border border-white/15 bg-white/[0.05] px-6 py-3 backdrop-blur-lg hero-availability">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
@@ -261,22 +292,24 @@ export default function Hero() {
               Digital products that move people.
             </h1>
 
-            <p className="hero-reveal max-w-2xl text-body-lg text-gray-400 mb-12">
+            <p className="hero-reveal max-w-2xl text-body-lg text-gray-400 mb-12 hero-description">
               I design and build web experiences that are <span className="text-white font-medium">visually refined</span> and <span className="text-white font-medium">technically sound</span> — balancing aesthetic direction with engineering discipline.
             </p>
 
             <div className="hero-reveal flex flex-col gap-4 sm:flex-row">
               <a
                 href="#contact"
-                className="inline-flex min-h-14 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-black transition-all duration-300 hover:bg-red-500 hover:text-white active:scale-95"
+                className="hero-button btn-magnetic inline-flex min-h-14 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-black transition-all duration-300 hover:bg-red-500 hover:text-white active:scale-95 relative overflow-hidden"
               >
-                Get in touch
+                <span className="btn-content">Get in touch</span>
+                <span className="btn-magnetic-bg"></span>
               </a>
               <a
                 href="#projects"
-                className="inline-flex min-h-14 items-center justify-center rounded-lg border border-white/20 text-sm font-medium text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5 active:scale-95"
+                className="hero-button btn-magnetic inline-flex min-h-14 items-center justify-center rounded-lg border border-white/20 text-sm font-medium text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5 active:scale-95 relative overflow-hidden"
               >
-                View my work
+                <span className="btn-content">View my work</span>
+                <span className="btn-magnetic-bg"></span>
               </a>
             </div>
           </div>
