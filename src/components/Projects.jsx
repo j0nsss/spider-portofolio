@@ -151,10 +151,10 @@ const ProjectCard = ({ project, active, onActivate }) => {
       <div className="relative z-30 flex min-h-[36rem] flex-col justify-between p-7 md:p-8" style={{ transform: 'translateZ(32px)' }}>
         <div className="flex items-start justify-between gap-6">
           <div>
-            <p className="font-mono-custom text-xs font-bold uppercase tracking-[0.32em] text-red-400">
+            <p className="font-mono-custom text-[10px] font-medium uppercase tracking-[0.28em] text-red-400">
               Case {project.id}
             </p>
-            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-gray-500">
+            <p className="mt-3 text-xs font-medium uppercase tracking-[0.22em] text-gray-500">
               {project.type}
             </p>
           </div>
@@ -164,7 +164,7 @@ const ProjectCard = ({ project, active, onActivate }) => {
         </div>
 
         <div>
-          <h3 className="font-display max-w-2xl text-5xl md:text-6xl font-black leading-tight tracking-tighter text-white">
+          <h3 className="font-display max-w-2xl text-4xl md:text-5xl font-bold leading-tight tracking-tighter text-white">
             {project.name}
           </h3>
 
@@ -248,18 +248,18 @@ export default function Projects() {
       <div className="relative z-10 mx-auto w-full max-w-[90rem]">
         <div className="projects-reveal mb-12 flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-4 font-mono-custom text-xs font-bold uppercase tracking-[0.36em] text-red-500">
+            <p className="mb-4 font-mono-custom text-xs font-semibold uppercase tracking-[0.28em] text-red-500">
               Projects / Selected Work
             </p>
-            <h2 className="font-display text-5xl md:text-6xl lg:text-[5.5rem] font-black leading-[0.95] tracking-tighter text-white max-w-4xl">
-              Practical builds with <span className="text-gradient-primary">polished interfaces</span> and <span className="text-gradient-primary">reliable systems</span>.
+            <h2 className="font-display text-4xl md:text-5xl lg:text-[4.5rem] font-bold leading-[1] tracking-tighter text-white max-w-4xl">
+              Practical builds with <span className="text-red-400">polished interfaces</span> and reliable systems.
             </h2>
           </div>
           <div className="max-w-md md:text-right">
             <p className="text-body-lg text-gray-400">
               A curated set of web, commerce, dashboard, and mobile product concepts shaped around clarity, speed, and strong visual direction.
             </p>
-            <p className="mt-5 font-mono-custom text-xs font-bold uppercase tracking-[0.24em] text-gray-500">
+            <p className="mt-5 font-mono-custom text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
               Active: <span className="text-red-400">{activeProject.name}</span>
             </p>
           </div>

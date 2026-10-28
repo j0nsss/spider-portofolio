@@ -252,19 +252,14 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.85)]"></span>
               </span>
-              <span className="font-mono-custom text-[10px] font-bold uppercase tracking-[0.32em] text-gray-200">
+              <span className="font-mono-custom text-[10px] font-semibold uppercase tracking-[0.28em] text-gray-200">
                 Jonad / Digital Product Engineer
               </span>
             </div>
 
-            <h1 className="hero-reveal font-display text-6xl md:text-7xl lg:text-[7.5rem] font-black leading-[0.9] tracking-tighter text-white max-w-5xl">
-              Interfaces with{' '}
-              <span className="text-gradient-hero inline-block animate-text-glow">
-                impact.
-              </span>
-              <span className="block font-serif font-light italic text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-300 to-gray-400 mt-2">
-                Systems with discipline.
-              </span>
+            <h1 className="hero-reveal font-display text-5xl md:text-7xl lg:text-[6.5rem] font-extrabold leading-[0.95] tracking-tighter text-white max-w-6xl">
+              Interfaces with impact.
+              <span className="block text-red-400 font-display mt-2">Systems with discipline.</span>
             </h1>
 
             <p className="hero-reveal mt-8 max-w-2xl text-body-lg text-gray-300">

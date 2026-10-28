@@ -2,8 +2,7 @@
 
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: 'Manrope', system-ui, sans-serif;
-  --font-display: 'Poppins', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 }
 
@@ -53,46 +52,46 @@
     }
   }
 
-  /* Typography scales */
+  /* Typography scales - Simplified system */
   h1, .text-display-xl {
-    @apply font-display font-black tracking-tight;
-    font-size: clamp(2.5rem, 8vw, 7rem);
+    @apply font-display font-extrabold tracking-tight;
+    font-size: clamp(2.5rem, 8vw, 6rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
   }
 
   h2, .text-display-lg {
-    @apply font-display font-extrabold tracking-tight;
-    font-size: clamp(2rem, 5vw, 5rem);
-    line-height: 0.98;
-    letter-spacing: -0.015em;
+    @apply font-display font-bold tracking-tight;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
   }
 
   h3, .text-display-md {
-    @apply font-heading font-bold tracking-normal;
-    font-size: clamp(1.5rem, 3vw, 3rem);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+    @apply font-sans font-bold tracking-normal;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.005em;
   }
 
   .text-body-lg {
     @apply font-sans font-normal;
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
-    line-height: 1.7;
-    letter-spacing: 0.01em;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.6;
+    letter-spacing: 0.005em;
   }
 
   .text-body-md {
     @apply font-sans font-normal;
     font-size: 1rem;
-    line-height: 1.6;
-    letter-spacing: 0.005em;
+    line-height: 1.5;
+    letter-spacing: 0.002em;
   }
 
   .text-label {
-    @apply font-mono font-semibold uppercase;
+    @apply font-mono font-medium uppercase;
     font-size: 0.75rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     line-height: 1.2;
   }
 }

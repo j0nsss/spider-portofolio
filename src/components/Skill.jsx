@@ -95,20 +95,20 @@ export default function Skill() {
       <div className="relative z-10 mx-auto max-w-[90rem]">
         <div className="skill-reveal mb-12 flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
            <div>
-            <p className="mb-4 font-mono-custom text-xs font-bold uppercase tracking-[0.36em] text-red-500">
+            <p className="mb-4 font-mono-custom text-xs font-semibold uppercase tracking-[0.28em] text-red-500">
               Skills / Technology Stack
             </p>
-            <h2 className="font-display text-5xl md:text-6xl lg:text-[5.5rem] font-black leading-[0.95] tracking-tighter text-white max-w-4xl">
-              Languages, frameworks, and tools I use to <span className="text-gradient-primary">ship real products</span>.
+            <h2 className="font-display text-4xl md:text-5xl lg:text-[4.5rem] font-bold leading-[1] tracking-tighter text-white max-w-4xl">
+              Languages, frameworks, and tools I use to <span className="text-red-400">ship real products</span>.
             </h2>
           </div>
           <p className="max-w-md text-body-lg text-gray-400 md:text-right">
-            From <span className="font-semibold text-white">frontend interfaces</span> to <span className="font-semibold text-white">backend logic</span> and <span className="font-semibold text-white">low-level fundamentals</span>, I work across the stack with a practical engineering mindset.
+            From <span className="font-medium text-white">frontend interfaces</span> to <span className="font-medium text-white">backend logic</span> and <span className="font-medium text-white">low-level fundamentals</span>, I work across the stack with a practical engineering mindset.
           </p>
         </div>
 
            <div className="skill-reveal mb-8 flex items-center justify-between gap-4">
-          <p className="font-mono-custom text-xs font-bold uppercase tracking-[0.32em] text-gray-500">
+          <p className="font-mono-custom text-xs font-medium uppercase tracking-[0.26em] text-gray-500">
             Drag or slide through the stack
           </p>
           <div className="flex gap-3">

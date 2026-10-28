@@ -106,14 +106,14 @@ export default function Contact() {
 
         {/* Header Block */}
         <div className="mb-16 animate-element">
-          <p className="text-red-500 font-mono-custom text-xs tracking-[0.36em] uppercase font-bold mb-5">
+          <p className="text-red-500 font-mono-custom text-xs tracking-[0.28em] uppercase font-semibold mb-5">
             [ Reach Out ]
           </p>
-          <h2 className="font-display text-6xl md:text-7xl lg:text-[6rem] font-black tracking-tighter text-white leading-none mb-6 drop-shadow-xl">
-            Find Me <span className="text-gradient-hero inline-block animate-text-glow">Online</span>
+          <h2 className="font-display text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-tighter text-white leading-none mb-6 drop-shadow-xl">
+            Find Me <span className="text-red-400">Online</span>
           </h2>
           <p className="text-body-lg text-gray-400 max-w-2xl mx-auto">
-            Let's connect across the digital universe. <span className="font-semibold text-white">Tap any platform</span> below to start a conversation.
+            Let's connect across the digital universe. <span className="font-medium text-white">Tap any platform</span> below to start a conversation.
           </p>
         </div>
 
@@ -140,7 +140,7 @@ export default function Contact() {
                 </div>
 
                 {/* Name */}
-                <h3 className="text-white font-heading text-2xl font-bold tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-500">
+                <h3 className="text-white font-display text-xl font-semibold tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-500">
                   {social.name}
                 </h3>
 

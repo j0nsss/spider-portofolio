@@ -122,16 +122,16 @@ export default function About() {
 
         <div className="mb-14 flex flex-col gap-5 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="stagger-reveal mb-4 font-mono-custom text-xs font-bold uppercase tracking-[0.36em] text-red-500">
+              <p className="stagger-reveal mb-4 font-mono-custom text-xs font-semibold uppercase tracking-[0.28em] text-red-500">
                 About / Profile
               </p>
-              <h2 className="stagger-reveal font-display text-5xl md:text-6xl lg:text-[5.5rem] font-black leading-[0.95] tracking-tighter text-white max-w-4xl">
-                Building <span className="text-gradient-primary">precise digital products</span> with a cinematic edge.
+              <h2 className="stagger-reveal font-display text-4xl md:text-5xl lg:text-[4.5rem] font-bold leading-[1] tracking-tighter text-white max-w-4xl">
+                Building precise digital products with a <span className="text-red-400">cinematic edge</span>.
               </h2>
             </div>
 
             <p className="stagger-reveal max-w-md text-body-lg text-gray-400 md:text-right">
-              I connect polished interfaces with dependable engineering, turning product ideas into <span className="font-semibold text-white">fast, expressive, and maintainable</span> web experiences.
+              I connect polished interfaces with dependable engineering, turning product ideas into <span className="font-medium text-white">fast, expressive, and maintainable</span> web experiences.
             </p>
         </div>
 
@@ -186,7 +186,7 @@ export default function About() {
                   key={item.label}
                   className="border-white/10 py-6 pr-4 [&:not(:last-child)]:border-r md:py-8 md:pr-6"
                 >
-                  <p className="font-display text-4xl md:text-5xl font-black tracking-tighter text-white">
+                  <p className="font-display text-3xl md:text-4xl font-extrabold tracking-tight text-white">
                     {item.value}
                   </p>
                   <p className="mt-2 max-w-[9rem] text-label text-gray-500">
@@ -197,12 +197,12 @@ export default function About() {
             </div>
 
             <div className="stagger-reveal mt-10 grid gap-8 md:grid-cols-[0.8fr_1.2fr]">
-              <p className="font-mono-custom text-xs font-bold uppercase tracking-[0.36em] text-gray-500">
+              <p className="font-mono-custom text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
                 Approach
               </p>
               <div className="space-y-5">
-                <p className="font-heading text-2xl md:text-3xl font-bold leading-relaxed text-gray-100">
-                  I design and develop web experiences that feel <span className="text-gradient-primary font-extrabold">sharp on the surface</span> and stay <span className="font-extrabold text-white">stable underneath</span>.
+                <p className="font-display text-xl md:text-2xl font-semibold leading-relaxed text-white">
+                  I design and develop web experiences that feel sharp on the surface and stay stable underneath.
                 </p>
                 <p className="text-body-md text-gray-400">
                   My work balances visual direction, frontend architecture, API integration, animation, and performance. The goal is not just a striking first impression, but an interface that remains clear, fast, and easy to evolve.
@@ -225,8 +225,8 @@ export default function About() {
             </div>
 
             <blockquote className="stagger-reveal mt-10 border-l-2 border-red-500/70 pl-6">
-              <p className="font-serif text-2xl md:text-3xl italic leading-relaxed text-gray-100">
-                "Logic gives the product <span className="text-gradient-primary font-semibold not-italic">structure</span>. Taste gives it <span className="text-gradient-primary font-semibold not-italic">momentum</span>."
+              <p className="font-display text-xl md:text-2xl font-medium italic leading-relaxed text-gray-200">
+                "Logic gives the product structure. Taste gives it momentum."
               </p>
             </blockquote>
           </div>
