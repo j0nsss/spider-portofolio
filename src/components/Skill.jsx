@@ -95,15 +95,15 @@ export default function Skill() {
       <div className="relative z-10 mx-auto max-w-[90rem]">
         <div className="skill-reveal mb-12 flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
            <div>
-            <p className="mb-4 font-mono-custom text-xs font-semibold uppercase tracking-[0.28em] text-red-500">
-              Skills / Technology Stack
+            <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.25em] text-red-500">
+              Skills
             </p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-[4.5rem] font-bold leading-[1] tracking-tighter text-white max-w-4xl">
-              Languages, frameworks, and tools I use to <span className="text-red-400">ship real products</span>.
+            <h2 className="font-display text-4xl md:text-5xl lg:text-[4.5rem] font-black leading-[0.9] tracking-tighter text-white max-w-4xl mb-6">
+              Technologies I build with.
             </h2>
           </div>
           <p className="max-w-md text-body-lg text-gray-400 md:text-right">
-            From <span className="font-medium text-white">frontend interfaces</span> to <span className="font-medium text-white">backend logic</span> and <span className="font-medium text-white">low-level fundamentals</span>, I work across the stack with a practical engineering mindset.
+            From <span className="text-white font-medium">interface design</span> to <span className="text-white font-medium">system architecture</span> — full-stack development with practical focus.
           </p>
         </div>
 
@@ -137,16 +137,16 @@ export default function Skill() {
             className="skill-reveal flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4 no-scrollbar"
           >
             {SKILLS.map((skill) => (
-              <button
+               <button
                 key={skill.name}
                 type="button"
                 onMouseEnter={() => setActiveSkillName(skill.name)}
                 onFocus={() => setActiveSkillName(skill.name)}
                 onClick={() => setActiveSkillName(skill.name)}
-                className={`group relative min-h-72 w-[82vw] shrink-0 snap-center overflow-hidden rounded-2xl border p-7 text-left transition-all duration-500 sm:w-[22rem] lg:w-[24rem] ${
+                className={`group relative min-h-60 w-[82vw] shrink-0 snap-center overflow-hidden rounded-xl border p-6 text-left transition-all duration-300 sm:w-[20rem] lg:w-[22rem] ${
                   activeSkill.name === skill.name
-                    ? 'border-red-500/60 bg-gradient-to-br from-red-500/[0.08] to-red-500/[0.03] shadow-[0_20px_60px_rgba(239,68,68,0.25)]'
-                    : 'border-white/15 bg-gradient-to-br from-white/[0.05] to-white/[0.02] hover:border-white/35 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]'
+                    ? 'border-white/30 bg-white/[0.08]'
+                    : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]'
                 }`}
               >
                 <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/10 opacity-20 blur-2xl transition duration-300 group-hover:opacity-35" />

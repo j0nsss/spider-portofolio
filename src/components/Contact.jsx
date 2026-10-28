@@ -106,14 +106,14 @@ export default function Contact() {
 
         {/* Header Block */}
         <div className="mb-16 animate-element">
-          <p className="text-red-500 font-mono-custom text-xs tracking-[0.28em] uppercase font-semibold mb-5">
-            [ Reach Out ]
+          <p className="text-red-500 font-mono text-xs tracking-[0.25em] uppercase font-medium mb-5">
+            Contact
           </p>
-          <h2 className="font-display text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-tighter text-white leading-none mb-6 drop-shadow-xl">
-            Find Me <span className="text-red-400">Online</span>
+          <h2 className="font-display text-5xl md:text-6xl lg:text-[5.5rem] font-black tracking-tighter text-white leading-none mb-6">
+            Let's connect.
           </h2>
           <p className="text-body-lg text-gray-400 max-w-2xl mx-auto">
-            Let's connect across the digital universe. <span className="font-medium text-white">Tap any platform</span> below to start a conversation.
+            Available for select projects and collaborations.
           </p>
         </div>
 
@@ -125,7 +125,7 @@ export default function Contact() {
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`animate-element group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.03] p-8 md:p-9 backdrop-blur-xl transition-all duration-500 ${social.color} hover:bg-white/[0.10] hover:scale-[1.05] hover:-translate-y-2 active:scale-[0.97] shadow-[0_8px_32px_rgba(0,0,0,0.4)] hover:shadow-[0_24px_64px_rgba(0,0,0,0.6)]`}
+              className={`animate-element group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-7 md:p-8 backdrop-blur-sm transition-all duration-300 ${social.color} hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:scale-[0.98]`}
             >
               {/* Hover glow beam */}
               <div className={`absolute -inset-40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-radial from-red-500/5 to-transparent pointer-events-none`} />
@@ -135,17 +135,17 @@ export default function Contact() {
 
               <div className="relative z-10 flex flex-col items-center gap-4">
                 {/* Icon container */}
-                <div className={`flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-white/[0.12] to-white/[0.06] group-hover:from-white/[0.18] group-hover:to-white/[0.10] border border-white/10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-[0_8px_24px_rgba(0,0,0,0.3)] ${social.color.replace('hover:border', 'group-hover:border').replace('hover:shadow', 'group-hover:shadow')}`}>
+                <div className={`flex items-center justify-center w-16 h-16 rounded-xl bg-white/[0.08] border border-white/10 transition-all duration-300 group-hover:scale-110 ${social.color.replace('hover:border', 'group-hover:border').replace('hover:shadow', 'group-hover:shadow')}`}>
                   {social.icon}
                 </div>
 
                 {/* Name */}
-                <h3 className="text-white font-display text-xl font-semibold tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 transition-all duration-500">
+                <h3 className="text-white font-display text-lg font-semibold tracking-tight transition-all duration-300">
                   {social.name}
                 </h3>
 
                 {/* Handle */}
-                <p className="text-gray-500 font-mono-custom text-sm group-hover:text-gray-300 transition-colors duration-500">
+                <p className="text-gray-500 font-mono text-sm group-hover:text-gray-400 transition-colors duration-300">
                   {social.handle}
                 </p>
 

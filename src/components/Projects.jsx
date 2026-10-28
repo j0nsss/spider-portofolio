@@ -124,8 +124,8 @@ const ProjectCard = ({ project, active, onActivate }) => {
                 onFocus={() => onActivate(project)}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                className={`project-card group relative min-h-[36rem] overflow-hidden rounded-2xl border bg-black text-left transition-all duration-500 ${
-                  active ? 'border-red-500/60 shadow-[0_32px_96px_rgba(239,68,68,0.35)]' : 'border-white/20 hover:border-white/35 hover:shadow-[0_32px_96px_rgba(0,0,0,0.6)]'
+                className={`project-card group relative min-h-[32rem] overflow-hidden rounded-xl border bg-black text-left transition-all duration-400 ${
+                  active ? 'border-white/25 shadow-[0_16px_48px_rgba(0,0,0,0.8)]' : 'border-white/10 hover:border-white/20'
                 } ${project.featured ? 'lg:col-span-2' : ''}`}
                 style={{ transformStyle: 'preserve-3d' }}
               >
@@ -164,15 +164,15 @@ const ProjectCard = ({ project, active, onActivate }) => {
         </div>
 
         <div>
-          <h3 className="font-display max-w-2xl text-4xl md:text-5xl font-bold leading-tight tracking-tighter text-white">
+          <h3 className="font-display max-w-2xl text-3xl md:text-4xl font-bold leading-tight tracking-tighter text-white">
             {project.name}
           </h3>
 
-          <p className="mt-6 max-w-2xl text-body-lg text-gray-300">
+          <p className="mt-5 max-w-2xl text-body-md text-gray-300">
             {project.description}
           </p>
 
-          <p className="mt-4 max-w-xl border-l-2 border-red-500/50 pl-4 text-sm leading-relaxed text-gray-400">
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-gray-500">
             {project.impact}
           </p>
 
@@ -248,19 +248,19 @@ export default function Projects() {
       <div className="relative z-10 mx-auto w-full max-w-[90rem]">
         <div className="projects-reveal mb-12 flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-4 font-mono-custom text-xs font-semibold uppercase tracking-[0.28em] text-red-500">
-              Projects / Selected Work
+            <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.25em] text-red-500">
+              Selected work
             </p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-[4.5rem] font-bold leading-[1] tracking-tighter text-white max-w-4xl">
-              Practical builds with <span className="text-red-400">polished interfaces</span> and reliable systems.
+            <h2 className="font-display text-4xl md:text-5xl lg:text-[4.5rem] font-black leading-[0.9] tracking-tighter text-white max-w-4xl mb-6">
+              Recent projects I've shipped.
             </h2>
           </div>
           <div className="max-w-md md:text-right">
-            <p className="text-body-lg text-gray-400">
-              A curated set of web, commerce, dashboard, and mobile product concepts shaped around clarity, speed, and strong visual direction.
+            <p className="text-body-lg text-gray-400 mb-5">
+              Web applications built with attention to interface refinement and backend stability.
             </p>
-            <p className="mt-5 font-mono-custom text-xs font-semibold uppercase tracking-[0.22em] text-gray-500">
-              Active: <span className="text-red-400">{activeProject.name}</span>
+            <p className="font-mono text-xs font-medium uppercase tracking-[0.22em] text-gray-500">
+              Active: <span className="text-white">{activeProject.name}</span>
             </p>
           </div>
         </div>

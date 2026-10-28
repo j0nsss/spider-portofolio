@@ -247,37 +247,36 @@ export default function Hero() {
             className="max-w-5xl transition-transform duration-700 ease-out"
             style={{ transform: isHovered ? 'translateY(-14px)' : 'translateY(0)' }}
           >
-            <div className="hero-reveal mb-8 flex w-fit items-center gap-3 rounded-full border border-white/20 bg-gradient-to-r from-white/[0.08] to-white/[0.03] px-5 py-2.5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+            <div className="hero-reveal mb-10 flex w-fit items-center gap-3 rounded-full border border-white/15 bg-white/[0.05] px-6 py-3 backdrop-blur-lg">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.85)]"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-red-500"></span>
               </span>
-              <span className="font-mono-custom text-[10px] font-semibold uppercase tracking-[0.28em] text-gray-200">
-                Jonad / Digital Product Engineer
+              <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-gray-300">
+                Available for work
               </span>
             </div>
 
-            <h1 className="hero-reveal font-display text-5xl md:text-7xl lg:text-[6.5rem] font-extrabold leading-[0.95] tracking-tighter text-white max-w-6xl">
-              Interfaces with impact.
-              <span className="block text-red-400 font-display mt-2">Systems with discipline.</span>
+            <h1 className="hero-reveal font-display text-5xl md:text-6xl lg:text-[6.5rem] font-black leading-[0.9] tracking-tighter text-white max-w-6xl mb-6">
+              Digital products that move people.
             </h1>
 
-            <p className="hero-reveal mt-8 max-w-2xl text-body-lg text-gray-300">
-              I craft modern web applications where <span className="font-semibold text-white">cinematic visuals</span>, <span className="font-semibold text-white">smooth interactions</span>, and <span className="font-semibold text-white">reliable engineering</span> work as one product experience.
+            <p className="hero-reveal max-w-2xl text-body-lg text-gray-400 mb-12">
+              I design and build web experiences that are <span className="text-white font-medium">visually refined</span> and <span className="text-white font-medium">technically sound</span> — balancing aesthetic direction with engineering discipline.
             </p>
 
-            <div className="hero-reveal mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="hero-reveal flex flex-col gap-4 sm:flex-row">
               <a
                 href="#contact"
-                className="pointer-events-auto inline-flex min-h-14 items-center justify-center rounded-full bg-gradient-to-r from-red-600 to-red-500 px-9 text-sm font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:shadow-[0_0_40px_rgba(239,68,68,0.5)] hover:scale-105 active:scale-95"
+                className="inline-flex min-h-14 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-black transition-all duration-300 hover:bg-red-500 hover:text-white active:scale-95"
               >
-                Start a Project
+                Get in touch
               </a>
               <a
                 href="#projects"
-                className="pointer-events-auto inline-flex min-h-14 items-center justify-center rounded-full border-2 border-white/25 bg-black/20 px-9 text-sm font-bold uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/60 hover:bg-white/10 hover:scale-105 active:scale-95"
+                className="inline-flex min-h-14 items-center justify-center rounded-lg border border-white/20 text-sm font-medium text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5 active:scale-95"
               >
-                View Work
+                View my work
               </a>
             </div>
           </div>

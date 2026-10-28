@@ -122,16 +122,16 @@ export default function About() {
 
         <div className="mb-14 flex flex-col gap-5 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="stagger-reveal mb-4 font-mono-custom text-xs font-semibold uppercase tracking-[0.28em] text-red-500">
-                About / Profile
+              <p className="stagger-reveal mb-5 font-mono text-xs font-medium uppercase tracking-[0.25em] text-red-500">
+                About
               </p>
-              <h2 className="stagger-reveal font-display text-4xl md:text-5xl lg:text-[4.5rem] font-bold leading-[1] tracking-tighter text-white max-w-4xl">
-                Building precise digital products with a <span className="text-red-400">cinematic edge</span>.
+              <h2 className="stagger-reveal font-display text-4xl md:text-5xl lg:text-[4.5rem] font-black leading-[0.9] tracking-tighter text-white max-w-4xl">
+                Building digital products with intention.
               </h2>
             </div>
 
             <p className="stagger-reveal max-w-md text-body-lg text-gray-400 md:text-right">
-              I connect polished interfaces with dependable engineering, turning product ideas into <span className="font-medium text-white">fast, expressive, and maintainable</span> web experiences.
+              I connect design and engineering to create <span className="text-white font-medium">fast, maintainable</span> web experiences.
             </p>
         </div>
 
@@ -189,23 +189,23 @@ export default function About() {
                   <p className="font-display text-3xl md:text-4xl font-extrabold tracking-tight text-white">
                     {item.value}
                   </p>
-                  <p className="mt-2 max-w-[9rem] text-label text-gray-500">
+                  <p className="mt-3 max-w-[9rem] text-label text-gray-500">
                     {item.label}
                   </p>
                 </div>
               ))}
             </div>
 
-            <div className="stagger-reveal mt-10 grid gap-8 md:grid-cols-[0.8fr_1.2fr]">
-              <p className="font-mono-custom text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">
-                Approach
+            <div className="stagger-reveal mt-12 grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
+              <p className="font-mono text-xs font-medium uppercase tracking-[0.25em] text-gray-500">
+                Philosophy
               </p>
-              <div className="space-y-5">
-                <p className="font-display text-xl md:text-2xl font-semibold leading-relaxed text-white">
-                  I design and develop web experiences that feel sharp on the surface and stay stable underneath.
+              <div className="space-y-6">
+                <p className="font-display text-2xl md:text-3xl font-semibold leading-snug text-white">
+                  Every interface should feel effortless. Every system should adapt gracefully.
                 </p>
                 <p className="text-body-md text-gray-400">
-                  My work balances visual direction, frontend architecture, API integration, animation, and performance. The goal is not just a striking first impression, but an interface that remains clear, fast, and easy to evolve.
+                  I focus on clarity, performance, and long-term maintainability — building products that work well today and scale smoothly tomorrow.
                 </p>
               </div>
             </div>
