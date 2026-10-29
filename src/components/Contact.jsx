@@ -106,14 +106,14 @@ export default function Contact() {
 
         {/* Header Block */}
         <div className="mb-16 animate-element">
-          <p className="text-red-500 font-mono text-xs tracking-[0.25em] uppercase font-bold mb-5">
-            // Join The Web
+          <p className="text-red-500 font-mono text-xs tracking-[0.2em] uppercase font-semibold mb-5">
+            Contact
           </p>
-          <h2 className="font-display text-5xl md:text-6xl lg:text-[6rem] font-black tracking-tighter text-white leading-none mb-6 uppercase">
+          <h2 className="font-display text-6xl md:text-7xl lg:text-[6.5rem] leading-[0.85] tracking-wider text-white mb-6">
             Let's <span className="text-spider-red">Connect</span>
           </h2>
           <p className="text-body-lg text-gray-300 max-w-2xl mx-auto">
-            Available for <span className="text-white font-semibold">select missions</span> and collaborations.
+            Available for select projects and collaborations.
           </p>
         </div>
 

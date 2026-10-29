@@ -95,15 +95,15 @@ export default function Skill() {
       <div className="relative z-10 mx-auto max-w-[90rem]">
         <div className="skill-reveal mb-12 flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
            <div>
-            <p className="mb-5 font-mono text-xs font-bold uppercase tracking-[0.25em] text-red-500">
-              // Tech Arsenal
+            <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-red-500">
+              Skills
             </p>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-[5rem] font-black leading-[0.85] tracking-tighter text-white max-w-4xl mb-6 uppercase">
-              Tools in My <span className="text-spider-red">Web</span>
+            <h2 className="font-display text-5xl md:text-6xl lg:text-[5.5rem] leading-[0.9] tracking-wider text-white max-w-4xl">
+              Tools In My Web
             </h2>
           </div>
           <p className="max-w-md text-body-lg text-gray-300 md:text-right">
-            From <span className="text-white font-semibold">interface design</span> to <span className="text-white font-semibold">system architecture</span> — full-stack power at your service.
+            Full-stack development across frontend, backend, and architecture. Every tool chosen with purpose.
           </p>
         </div>
 

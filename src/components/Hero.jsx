@@ -288,13 +288,13 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="hero-reveal font-display text-5xl md:text-6xl lg:text-[7rem] font-black leading-[0.85] tracking-tighter text-white max-w-6xl mb-6 text-comic">
-              Web Design.<br />
-              <span className="text-spider-red">Power & Precision.</span>
+            <h1 className="hero-reveal font-display text-6xl md:text-7xl lg:text-[8rem] leading-[0.85] tracking-wide text-white max-w-6xl mb-6">
+              WEB DESIGN<br />
+              <span className="text-spider-red">POWER & PRECISION</span>
             </h1>
 
             <p className="hero-reveal max-w-2xl text-body-lg text-gray-300 mb-12">
-              I spin sophisticated interfaces and robust systems — <span className="text-white font-semibold">elegant solutions</span> woven with <span className="text-white font-semibold">engineering precision</span>.
+              I spin sophisticated interfaces and robust systems — elegant solutions woven with engineering precision.
             </p>
 
             <div className="hero-reveal flex flex-col gap-4 sm:flex-row">
