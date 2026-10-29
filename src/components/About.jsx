@@ -180,16 +180,16 @@ export default function About() {
 
         <div className="mb-14 flex flex-col gap-5 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="stagger-reveal mb-5 font-mono text-xs font-medium uppercase tracking-[0.25em] text-red-500">
-                About
+              <p className="stagger-reveal mb-5 font-mono text-xs font-bold uppercase tracking-[0.25em] text-red-500">
+                // Spider Tech
               </p>
-              <h2 className="stagger-reveal font-display text-4xl md:text-5xl lg:text-[4.5rem] font-black leading-[0.9] tracking-tighter text-white max-w-4xl">
-                Building digital products with intention.
+              <h2 className="stagger-reveal font-display text-4xl md:text-5xl lg:text-[5rem] font-black leading-[0.85] tracking-tighter text-white max-w-4xl uppercase">
+                Weaving Digital <span className="text-spider-red">Experiences</span>
               </h2>
             </div>
 
-            <p className="stagger-reveal max-w-md text-body-lg text-gray-400 md:text-right">
-              I connect design and engineering to create <span className="text-white font-medium">fast, maintainable</span> web experiences.
+            <p className="stagger-reveal max-w-md text-body-lg text-gray-300 md:text-right">
+              Every thread matters. Every connection counts. <span className="text-white font-semibold">Fast, maintainable,</span> and built to last.
             </p>
         </div>
 

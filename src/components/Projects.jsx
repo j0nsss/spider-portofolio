@@ -285,19 +285,19 @@ export default function Projects() {
       <div className="relative z-10 mx-auto w-full max-w-[90rem]">
         <div className="projects-reveal mb-12 flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-5 font-mono text-xs font-medium uppercase tracking-[0.25em] text-red-500 projects-reveal">
-              Selected work
+            <p className="mb-5 font-mono text-xs font-bold uppercase tracking-[0.25em] text-red-500 projects-reveal">
+              // Web Showcase
             </p>
-            <h2 className="projects-heading font-display text-4xl md:text-5xl lg:text-[4.5rem] font-black leading-[0.9] tracking-tighter text-white max-w-4xl mb-6">
-              Recent projects I've shipped.
+            <h2 className="projects-heading font-display text-4xl md:text-5xl lg:text-[5rem] font-black leading-[0.85] tracking-tighter text-white max-w-4xl mb-6 uppercase">
+              Projects I've <span className="text-spider-red">Spun</span>
             </h2>
           </div>
           <div className="max-w-md md:text-right">
-            <p className="text-body-lg text-gray-400 mb-5">
-              Web applications built with attention to interface refinement and backend stability.
+            <p className="text-body-lg text-gray-300 mb-5">
+              Web applications built with <span className="text-white font-semibold">precision</span> and <span className="text-white font-semibold">power</span>.
             </p>
-            <p className="font-mono text-xs font-medium uppercase tracking-[0.22em] text-gray-500">
-              Active: <span className="text-white">{activeProject.name}</span>
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.22em] text-gray-500">
+              Active: <span className="text-red-500">{activeProject.name}</span>
             </p>
           </div>
         </div>
