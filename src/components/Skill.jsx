@@ -51,26 +51,92 @@ export default function Skill() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 78%',
-          toggleActions: 'play none none reverse',
-        },
+      // Animated progress bars with scrub
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top 80%',
+        end: 'bottom 20%',
+        scrub: 1,
+        onEnter: () => {
+          gsap.to('.skill-meter', {
+            scaleX: 1,
+            duration: 2,
+            stagger: 0.1,
+            ease: 'power3.out',
+            force3D: true
+          });
+        }
       });
 
-      timeline
-        .fromTo(
-          '.skill-reveal',
-          { opacity: 0, y: 36 },
-          { opacity: 1, y: 0, duration: 1.1, stagger: 0.1, ease: 'power3.out', force3D: true },
-        )
-        .fromTo(
-          '.skill-meter',
-          { scaleX: 0 },
-          { scaleX: 1, duration: 1.2, stagger: 0.05, ease: 'power3.out' },
-          '-=0.5',
-        );
+      // Split heading text for character animation
+      const heading = document.querySelector('.skills-heading');
+      if (heading) {
+        const headingText = heading.textContent;
+        heading.innerHTML = headingText.split('').map(char => 
+          `<span class="char" style="display:inline-block; opacity:0;">${char === ' ' ? '&nbsp;' : char}</span>`
+        ).join('');
+      }
+
+      // Staggered reveal animation
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top 75%',
+        toggleActions: 'play none none none',
+        onEnter: () => {
+          const tl = gsap.timeline();
+          
+          tl.fromTo(sectionRef.current.querySelectorAll('.char'),
+            { opacity: 0, y: 20, rotationX: 20 },
+            { opacity: 1, y: 0, rotationX: 0, duration: 0.8, stagger: 0.02, ease: 'power2.out' }
+          )
+          .fromTo('.skill-label',
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.8, stagger: 0.08, ease: 'power2.out' },
+            '-=0.4'
+          )
+          .fromTo('.skill-description',
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.8, stagger: 0.05, ease: 'power2.out' },
+            '-=0.3'
+          );
+        }
+      });
+
+      // Card hover effects with 3D
+      const skillCards = sectionRef.current.querySelectorAll('.skill-card');
+      skillCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          gsap.to(card, {
+            y: -10,
+            scale: 1.02,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            y: 0,
+            scale: 1,
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+        });
+      });
+
+      // Animate buttons on scroll
+      ScrollTrigger.create({
+        trigger: '.skill-navigation',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse',
+        onEnter: () => {
+          gsap.fromTo('.skill-button',
+            { scale: 0.8, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'back.out(1.7)' }
+          );
+        }
+      });
+
     }, sectionRef);
 
     return () => ctx.revert();
@@ -93,16 +159,16 @@ export default function Skill() {
       <div className="absolute left-1/2 top-0 h-[32rem] w-[48rem] -translate-x-1/2 rounded-full bg-red-500/8 blur-[160px] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-[90rem]">
-        <div className="skill-reveal mb-12 flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
+           <div className="skill-label mb-12 flex flex-col gap-6 border-b border-white/10 pb-8 md:flex-row md:items-end md:justify-between">
            <div>
             <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-red-500">
               Skills
             </p>
-            <h2 className="font-display text-5xl md:text-6xl lg:text-[5.5rem] leading-[0.9] tracking-wider text-white max-w-4xl">
+            <h2 className="skills-heading font-display text-5xl md:text-6xl lg:text-[5.5rem] leading-[0.9] tracking-wider text-white max-w-4xl">
               Tools In My Web
             </h2>
           </div>
-          <p className="max-w-md text-body-lg text-gray-300 md:text-right">
+           <p className="skill-description max-w-md text-body-lg text-gray-300 md:text-right">
             Full-stack development across frontend, backend, and architecture. Every tool chosen with purpose.
           </p>
         </div>

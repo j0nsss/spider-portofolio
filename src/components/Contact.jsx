@@ -70,26 +70,110 @@ const socials = [
 export default function Contact() {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse"
-        }
-      });
+   useEffect(() => {
+     const ctx = gsap.context(() => {
+       // Character animation on heading
+       const heading = sectionRef.current.querySelector('h2');
+       if (heading) {
+         const headingText = heading.textContent;
+         heading.innerHTML = headingText.split('').map(char => 
+           `<span class="char" style="display:inline-block; opacity:0;">${char === ' ' ? '&nbsp;' : char}</span>`
+         ).join('');
+       }
 
-      const elements = sectionRef.current.querySelectorAll('.animate-element');
-      tl.fromTo(elements,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1.2, stagger: 0.15, ease: "power3.out", force3D: true }
-      );
+       // Wave animation for social cards
+       const socialCards = sectionRef.current.querySelectorAll('.social-card');
+       
+       ScrollTrigger.create({
+         trigger: sectionRef.current,
+         start: 'top 70%',
+         toggleActions: 'play none none none',
+         onEnter: () => {
+           const tl = gsap.timeline();
+           
+           // Animate heading characters
+           tl.fromTo(sectionRef.current.querySelectorAll('.char'),
+             { opacity: 0, y: 30, rotationY: 20 },
+             { opacity: 1, y: 0, rotationY: 0, duration: 0.8, stagger: 0.03, ease: 'power3.out' }
+           )
+           .fromTo('.contact-label',
+             { opacity: 0, scale: 0.8 },
+             { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.7)' },
+             '-=0.4'
+           )
+           .fromTo('.contact-description',
+             { opacity: 0, y: 20 },
+             { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
+             '-=0.3'
+           )
+           .fromTo(socialCards,
+             { opacity: 0, y: 40, scale: 0.9, rotationY: 10 },
+             { opacity: 1, y: 0, scale: 1, rotationY: 0, duration: 0.7, stagger: 0.1, ease: 'back.out(1.4)' },
+             '-=0.4'
+           );
+         }
+       });
 
-    }, sectionRef);
+       // Hover effects with 3D tilt
+       socialCards.forEach(card => {
+         card.addEventListener('mouseenter', (e) => {
+           const rect = card.getBoundingClientRect();
+           const x = (e.clientX - rect.left) / rect.width - 0.5;
+           const y = (e.clientY - rect.top) / rect.height - 0.5;
+           
+           gsap.to(card, {
+             rotationY: x * 8,
+             rotationX: -y * 8,
+             transformPerspective: 1000,
+             duration: 0.3,
+             ease: 'power2.out'
+           });
+         });
+         
+         card.addEventListener('mouseleave', () => {
+           gsap.to(card, {
+             rotationY: 0,
+             rotationX: 0,
+             duration: 0.6,
+             ease: 'power3.out'
+           });
+         });
+       });
 
-    return () => ctx.revert();
-  }, []);
+       // Glow effect on scroll
+       ScrollTrigger.create({
+         trigger: sectionRef.current,
+         start: 'top bottom',
+         end: 'bottom top',
+         scrub: true,
+         onUpdate: (self) => {
+           const glow = sectionRef.current.querySelector('.glow-effect');
+           if (glow) {
+             gsap.to(glow, {
+               opacity: 0.3 + (self.progress * 0.2),
+               scale: 1 + (self.progress * 0.1),
+               duration: 0.3,
+               ease: 'none'
+             });
+           }
+         }
+       });
+
+       // Animated gradient for heading
+       const gradientText = sectionRef.current.querySelector('.gradient-text');
+       if (gradientText) {
+         gsap.to(gradientText, {
+           backgroundPosition: '200% 50%',
+           duration: 8,
+           repeat: -1,
+           ease: 'linear'
+         });
+       }
+
+     }, sectionRef);
+
+     return () => ctx.revert();
+   }, []);
 
   return (
     <section
@@ -105,14 +189,14 @@ export default function Contact() {
       <div className="max-w-5xl w-full relative z-10 flex flex-col items-center text-center">
 
         {/* Header Block */}
-        <div className="mb-16 animate-element">
-          <p className="text-red-500 font-mono text-xs tracking-[0.2em] uppercase font-semibold mb-5">
+        <div className="mb-16">
+          <p className="contact-label text-red-500 font-mono text-xs tracking-[0.2em] uppercase font-semibold mb-5">
             Contact
           </p>
           <h2 className="font-display text-6xl md:text-7xl lg:text-[6.5rem] leading-[0.85] tracking-wider text-white mb-6">
-            Let's <span className="text-spider-red">Connect</span>
+            Let's <span className="text-spider-red gradient-text">Connect</span>
           </h2>
-          <p className="text-body-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="contact-description text-body-lg text-gray-300 max-w-2xl mx-auto">
             Available for select projects and collaborations.
           </p>
         </div>
@@ -125,7 +209,8 @@ export default function Contact() {
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`animate-element group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-7 md:p-8 backdrop-blur-sm transition-all duration-300 ${social.color} hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:scale-[0.98]`}
+              className={`social-card group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.03] p-7 md:p-8 backdrop-blur-sm transition-all duration-300 ${social.color} hover:bg-white/[0.06] hover:border-white/20 hover:-translate-y-1 active:scale-[0.98]`}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               {/* Hover glow beam */}
               <div className={`absolute -inset-40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-radial from-red-500/5 to-transparent pointer-events-none`} />
