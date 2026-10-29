@@ -72,6 +72,45 @@
     }
   }
 
+  @keyframes web-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(230, 57, 70, 0.6);
+    }
+  }
+
+  @keyframes web-draw {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes web-pulse {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes web-swing {
+    0%, 100% {
+      transform: rotate(0deg) translateZ(0);
+    }
+    25% {
+      transform: rotate(1deg) translateZ(0);
+    }
+    75% {
+      transform: rotate(-1deg) translateZ(0);
+    }
+  }
+
   /* Refined Spider-Man Typography */
   h1, .text-display-xl {
     font-family: var(--font-display);
@@ -163,6 +202,41 @@
 
   .animate-text-glow {
     animation: text-glow 3s ease-in-out infinite;
+  }
+
+  /* Spider Web Effects */
+  .web-glow {
+    animation: web-glow 3s ease-in-out infinite;
+  }
+
+  .web-draw {
+    animation: web-draw 2s ease-in-out;
+  }
+
+  .web-pulse {
+    animation: web-pulse 2s ease-in-out infinite;
+  }
+
+  .web-swing {
+    animation: web-swing 4s ease-in-out infinite;
+  }
+
+  /* Web line trails */
+  .web-line {
+    position: relative;
+    background: linear-gradient(90deg, transparent, #e63946, transparent);
+    background-size: 200% 100%;
+  }
+
+  .web-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.8), transparent);
+    animation: web-draw 1.5s ease-in-out infinite;
   }
 
   /* Spider-Man Text Effects */

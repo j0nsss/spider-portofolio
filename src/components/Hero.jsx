@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { vertexShader, fragmentShader } from './HeroShaders';
+import SpiderWeb from './SpiderWeb';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -246,13 +247,18 @@ export default function Hero() {
     <section ref={heroRef} className="relative flex min-h-screen w-screen items-center overflow-hidden bg-gradient-to-b from-black via-slate-950 to-black">
       <div ref={containerRef} className="absolute inset-0 z-0 select-none" />
 
+      {/* Spider Web Background */}
+      <div className="absolute inset-0 z-[1] opacity-[0.15]">
+        <SpiderWeb />
+      </div>
+
       {/* Enhanced gradient overlays */}
-      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_68%_46%,transparent_0%,rgba(239,68,68,0.08)_28%,rgba(0,0,0,0.5)_72%,#000_100%)] pointer-events-none" />
-      <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.5)_35%,rgba(0,0,0,0.1)_65%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
+      <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_68%_46%,transparent_0%,rgba(239,68,68,0.08)_28%,rgba(0,0,0,0.5)_72%,#000_100%)] pointer-events-none" />
+      <div className="absolute inset-0 z-[3] bg-[linear-gradient(90deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.5)_35%,rgba(0,0,0,0.1)_65%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
       
       {/* Subtle animated grid */}
       <div
-        className="absolute inset-0 z-[3] opacity-[0.04] pointer-events-none"
+        className="absolute inset-0 z-[4] opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage:
             'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
@@ -261,7 +267,7 @@ export default function Hero() {
       />
       
       {/* Animated accent line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent z-[3] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent z-[5] pointer-events-none" />
 
       <div
         ref={cursorRef}
